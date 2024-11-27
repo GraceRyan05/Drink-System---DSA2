@@ -1,0 +1,11 @@
+<object-stream>
+  <com.example.drink__system.CustomLinkedList>
+    <head>
+      <contents class="com.example.drink_system.Ingredients">
+        <ingredientName>Vodka</ingredientName>
+        <textualDescription>Descitiption</textualDescription>
+        <alcoholContent>40.0</alcoholContent>
+      </contents>
+    </head>
+  </com.example.drink__system.CustomLinkedList>
+</object-stream>

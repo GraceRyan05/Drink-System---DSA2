@@ -64,6 +64,17 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
         return false; //data not found
     }
 
+    //get size of a list
+    public int size() {
+        int count = 0;
+        Node<G> current = head; // starting from the head
+        while (current != null) { // traverse until the end
+            count++;
+            current = current.next;
+        }
+        System.out.println("Size of CustomList: " + count); // debugging
+        return count;
+    }
 
     //get an element at a certain index in the list
     public G getAtIndex(int index) {

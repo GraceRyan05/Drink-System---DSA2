@@ -1,0 +1,12 @@
+<object-stream>
+  <com.example.drink__system.CustomLinkedList>
+    <head>
+      <contents class="com.example.drink_system.Drinks">
+        <drinkName>Mojito</drinkName>
+        <countryOfOrigin>cool</countryOfOrigin>
+        <textualDescription>idk</textualDescription>
+        <imageURL>image_url</imageURL>
+      </contents>
+    </head>
+  </com.example.drink__system.CustomLinkedList>
+</object-stream>
