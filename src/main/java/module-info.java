@@ -5,4 +5,6 @@ module com.example.drink_system {
 
     opens com.example.drink_system to javafx.fxml;
     exports com.example.drink_system;
+
+
 }

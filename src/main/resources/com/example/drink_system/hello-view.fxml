@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.drink_system.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.drink_system.HelloController">
+   <children>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="HOME">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="INGREDIENTS">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="ingredientNameField" layoutX="29.0" layoutY="79.0" promptText="NAME" />
+                        <TextField fx:id="ingredientDescriptionField" layoutX="29.0" layoutY="129.0" promptText="DESCIPTION " />
+                        <TextField fx:id="ingredientAlcContentField" layoutX="29.0" layoutY="178.0" promptText="ALCOHOL CONTENT" />
+                        <ListView fx:id="ingredientListView" layoutX="300.0" layoutY="79.0" prefHeight="291.0" prefWidth="252.0" />
+                        <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plese add an ingredient:" />
+                        <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="237.0" mnemonicParsing="false" onAction="#addIngredient" text="ADD" />
+                        <Text layoutX="300.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
+                        <Button fx:id="ingredientDeleteButton" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteIngredient" text="DELETE" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="DRINKS">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="drinkNameField" layoutX="28.0" layoutY="70.0" promptText="NAME" />
+                        <TextField fx:id="drinkCountryOfOriginField" layoutX="29.0" layoutY="137.0" promptText="PLACE OF ORIGIN" />
+                        <TextField fx:id="drinkDescriptionField" layoutX="29.0" layoutY="206.0" promptText="DESCRIPTION" />
+                        <TextField fx:id="drinkURLImageField" layoutX="29.0" layoutY="273.0" promptText="IMAGE URL" />
+                        <ListView fx:id="drinkListView" layoutX="331.0" layoutY="67.0" prefHeight="278.0" prefWidth="217.0" />
+                        <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="333.0" mnemonicParsing="false" onAction="#addDrink" text="ADD" />
+                        <Button fx:id="drinkDeleteButton" layoutX="478.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteDrink" text="DELETE" />
+                        <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a drink" />
+                        <Text layoutX="331.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
+                     </children></AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="RECIPES">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</StackPane>
