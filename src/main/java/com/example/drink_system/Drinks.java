@@ -5,10 +5,13 @@ public class Drinks {
     private String countryOfOrigin;
     private String textualDescription;
 
-    public Drinks(String drinkName, String countryOfOrigin, String textualDescription) {
+    private String imageURL; //Peter asks for URL in the description and not an actual pic so I hope we are gonna be fine with that
+
+    public Drinks(String drinkName, String countryOfOrigin, String textualDescription, String imageURL) {
         this.drinkName = drinkName;
         this.countryOfOrigin = countryOfOrigin;
         this.textualDescription = textualDescription;
+        this.imageURL = imageURL;
     }
 
     public String getDrinkName() {
@@ -35,8 +38,14 @@ public class Drinks {
         this.textualDescription = textualDescription;
     }
 
+    public String getImageURL(){
+        return imageURL;
+    }
+    public void setImageURL(){
+        this.imageURL = imageURL;
+    }
     public String toString() {
-        return "Drink Name: " + drinkName + ", Country of Origin: " + countryOfOrigin + " Textual Description: " + textualDescription;
+        return "Drink Name: " + drinkName + ", Country of Origin: " + countryOfOrigin + ", Textual Description: " + textualDescription + ", Image URL: " +imageURL;
     }
 
 }
