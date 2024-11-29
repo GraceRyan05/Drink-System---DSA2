@@ -13,12 +13,12 @@
    <children>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="HOME">
+          <Tab text="Home Page">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
             </content>
           </Tab>
-          <Tab text="INGREDIENTS">
+          <Tab text="Ingredients">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -26,15 +26,15 @@
                         <TextField fx:id="ingredientDescriptionField" layoutX="29.0" layoutY="129.0" promptText="DESCIPTION " />
                         <TextField fx:id="ingredientAlcContentField" layoutX="29.0" layoutY="178.0" promptText="ALCOHOL CONTENT" />
                         <ListView fx:id="ingredientListView" layoutX="300.0" layoutY="79.0" prefHeight="291.0" prefWidth="252.0" />
-                        <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plese add an ingredient:" />
-                        <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="237.0" mnemonicParsing="false" onAction="#addIngredient" text="ADD" />
+                        <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add an ingredient to the system:" />
+                        <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="237.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
                         <Text layoutX="300.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
-                        <Button fx:id="ingredientDeleteButton" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteIngredient" text="DELETE" />
+                        <Button fx:id="ingredientDeleteButton" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="DRINKS">
+            <Tab text="Drinks">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -43,16 +43,23 @@
                         <TextField fx:id="drinkDescriptionField" layoutX="29.0" layoutY="206.0" promptText="DESCRIPTION" />
                         <TextField fx:id="drinkURLImageField" layoutX="29.0" layoutY="273.0" promptText="IMAGE URL" />
                         <ListView fx:id="drinkListView" layoutX="331.0" layoutY="67.0" prefHeight="278.0" prefWidth="217.0" />
-                        <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="333.0" mnemonicParsing="false" onAction="#addDrink" text="ADD" />
-                        <Button fx:id="drinkDeleteButton" layoutX="478.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteDrink" text="DELETE" />
-                        <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please add a drink" />
+                        <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="333.0" mnemonicParsing="false" onAction="#addDrink" text="Add" />
+                        <Button fx:id="drinkDeleteButton" layoutX="478.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteDrink" text="Delete" />
+                        <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a drink to the system:" />
                         <Text layoutX="331.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
                      </children></AnchorPane>
               </content>
             </Tab>
-            <Tab text="RECIPES">
+            <Tab text="Recipes">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="41.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a recipe to the system:" />
+                        <ListView fx:id="ingredientListView1" layoutX="287.0" layoutY="71.0" prefHeight="291.0" prefWidth="252.0" />
+                        <Text layoutX="334.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all recipes:" />
+                        <Button layoutX="443.0" layoutY="432.0" mnemonicParsing="false" text="Delete" />
+                        <Button layoutX="87.0" layoutY="381.0" mnemonicParsing="false" text="Add" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
