@@ -1,11 +1,35 @@
 <object-stream>
   <com.example.drink__system.CustomLinkedList>
     <head>
+      <next>
+        <next>
+          <next>
+            <contents class="com.example.drink_system.Drinks">
+              <drinkName>Mojito</drinkName>
+              <countryOfOrigin>cool</countryOfOrigin>
+              <textualDescription>idk</textualDescription>
+              <imageURL>image_url</imageURL>
+            </contents>
+          </next>
+          <contents class="com.example.drink_system.Drinks">
+            <drinkName>er</drinkName>
+            <countryOfOrigin>ef</countryOfOrigin>
+            <textualDescription>erf</textualDescription>
+            <imageURL>fe</imageURL>
+          </contents>
+        </next>
+        <contents class="com.example.drink_system.Drinks">
+          <drinkName>ffd</drinkName>
+          <countryOfOrigin>sf</countryOfOrigin>
+          <textualDescription>df</textualDescription>
+          <imageURL>f</imageURL>
+        </contents>
+      </next>
       <contents class="com.example.drink_system.Drinks">
-        <drinkName>Mojito</drinkName>
-        <countryOfOrigin>cool</countryOfOrigin>
-        <textualDescription>idk</textualDescription>
-        <imageURL>image_url</imageURL>
+        <drinkName>gyg</drinkName>
+        <countryOfOrigin>hjkhj</countryOfOrigin>
+        <textualDescription>hjkh</textualDescription>
+        <imageURL>hjhj</imageURL>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>

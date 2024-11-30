@@ -2,10 +2,7 @@ package com.example.drink_system;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -143,6 +140,7 @@ public class HelloController {
 
         drinksCustomLinkedList.add(newDrink);
         drinkListView.getItems().add(newDrink.toString());
+        deleteDrinkComboBox.getItems().add(newDrink.toString());
         saveDrinks();
 
         drinkNameField.clear();
@@ -150,9 +148,29 @@ public class HelloController {
         drinkCountryOfOriginField.clear();
         drinkURLImageField.clear();
     }
-    public void deleteDrink(ActionEvent event){
 
+    @FXML
+    private ComboBox<String> deleteDrinkComboBox;
+    public void deleteDrink(ActionEvent event){
+        String drinkComboBox = deleteDrinkComboBox.getValue(); //gets the value from the combobox
+        Drinks drinkToDelete = null;
+        for (Drinks drink : drinksList) {
+            if (drink.toString().equals(drinkComboBox)) {
+                drinkToDelete = drink;
+            }
+        }
+        if (drinkToDelete != null) {
+            drinksList.delete(drinkToDelete);
+            drinkListView.getItems().remove(drinkToDelete.toString());
+            deleteDrinkComboBox.getItems().remove(drinkToDelete.toString());
+
+            drinkListView.getItems();
+
+
+        }
     }
+
+
     public void saveDrinks() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/drinks.xml");
         var xstream = new XStream(new DomDriver());
