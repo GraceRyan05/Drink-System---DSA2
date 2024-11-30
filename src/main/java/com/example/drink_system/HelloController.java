@@ -13,6 +13,8 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.io.*;
 
 public class HelloController {
+
+
     @FXML
     private Label welcomeText;
 
@@ -25,6 +27,20 @@ public class HelloController {
     public void initialize(){
         loadIngredients();
         loadDrinks();
+    }
+
+
+    //The lists of each
+    private CustomLinkedList<Drinks> drinksList;
+    private CustomLinkedList<Ingredients> ingredientsList;
+    private CustomLinkedList<Recipes> recipesList;
+
+
+    //Controller constructor
+    public HelloController() {
+        this.drinksList = new CustomLinkedList<>();
+        this.ingredientsList = new CustomLinkedList<>();
+        this.recipesList = new CustomLinkedList<>();
     }
 
 
@@ -63,6 +79,7 @@ public class HelloController {
 
     public void deleteIngredient(ActionEvent event) {
         //I am not sure how you do the delete method
+
     }
 
 
