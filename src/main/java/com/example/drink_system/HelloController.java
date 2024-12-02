@@ -15,6 +15,7 @@ public class HelloController {
     @FXML
     private Label welcomeText;
 
+
     @FXML
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
@@ -54,35 +55,73 @@ public class HelloController {
     @FXML
     private Button ingredientDeleteButton;
     @FXML
+    private Button ingredientUpdateButton;
+    @FXML
     private ListView ingredientListView;
 
     private CustomLinkedList<Ingredients> ingredientsCustomLinkedList = new CustomLinkedList<>();
+
+    private int selectedIngredientIndex = -1;
     public void addIngredient (ActionEvent event) throws IOException{
+        selectedIngredientIndex = ingredientListView.getSelectionModel().getSelectedIndex(); //in case of updated ingredient
+
         String name = ingredientNameField.getText();
         String description = ingredientDescriptionField.getText();
         double alcContent = Double.parseDouble(ingredientAlcContentField.getText());
 
         Ingredients newIngredient = new Ingredients(name, description, alcContent);
 
-        ingredientsCustomLinkedList.add(newIngredient);
-        ingredientListView.getItems().add(newIngredient.toString());
-        saveIngredients();
+        if (selectedIngredientIndex >= 0) {
+            // update existing ingredient
+            ingredientsCustomLinkedList.setAtIndex(selectedIngredientIndex, newIngredient);
+            ingredientListView.getItems().set(selectedIngredientIndex, newIngredient.toString());
+            saveIngredients();
+        } else {
+            // add new ingredient
+            ingredientsCustomLinkedList.add(newIngredient);
+            ingredientListView.getItems().add(newIngredient.toString());
+            saveIngredients();
+        }
 
+
+        selectedIngredientIndex = -1;
         ingredientNameField.clear();
         ingredientDescriptionField.clear();
         ingredientAlcContentField.clear();
+        ingredientListView.getSelectionModel().clearSelection();
+    }
+
+    //this method put selected index`s info into text fields
+    public void updateIngredient(ActionEvent event) {
+        selectedIngredientIndex = ingredientListView.getSelectionModel().getSelectedIndex();
+        if (selectedIngredientIndex >= 0) {
+            // get the selected ingredient
+            Ingredients selectedIngredient = ingredientsCustomLinkedList.getAtIndex(selectedIngredientIndex);
+
+            // populate text fields with the selected ingredient's data
+            ingredientNameField.setText(selectedIngredient.getIngredientName());
+            ingredientDescriptionField.setText(selectedIngredient.getTextualDescription());
+            ingredientAlcContentField.setText(String.valueOf(selectedIngredient.getAlcoholContent()));
+        } else {
+            System.out.println("No ingredient selected for update.");
+        }
     }
 
 
-    public void deleteIngredient(ActionEvent event) {
-        //I am not sure how you do the delete method
+    public void deleteIngredient(ActionEvent event) throws Exception {
+        int selectedIndex = ingredientListView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex != -1 ){
+            ingredientListView.getItems().remove(selectedIndex);
+            ingredientsList.remove(selectedIndex);
+            saveIngredients();
+        }
 
     }
 
 
     public void saveIngredients() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
-        var xstream = new XStream(new DomDriver());
+        XStream xstream = new XStream(new DomDriver());
         xstream.allowTypeHierarchy(Ingredients.class);
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         ObjectOutputStream os = xstream.createObjectOutputStream(new FileWriter(file));
@@ -99,7 +138,6 @@ public class HelloController {
         xstream.allowTypeHierarchy(Ingredients.class);
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         try {
-
             ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
             //load the xml data into showsList
             ingredientsCustomLinkedList = (CustomLinkedList<Ingredients>) in.readObject();

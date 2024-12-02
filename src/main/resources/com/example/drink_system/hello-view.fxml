@@ -18,15 +18,15 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="232.0" layoutY="56.0" />
-                        <Text layoutX="44.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searh for drinks here:" />
-                        <Text layoutX="78.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for ingredients here:" />
-                        <Text layoutX="232.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for recipes here:" />
-                        <TextField layoutX="307.0" layoutY="147.0" />
-                        <TextField layoutX="330.0" layoutY="188.0" />
-                        <Button layoutX="379.0" layoutY="82.0" mnemonicParsing="false" text="Search" />
-                        <Button layoutX="454.0" layoutY="56.0" mnemonicParsing="false" text="Search" />
-                        <Button layoutX="480.0" layoutY="95.0" mnemonicParsing="false" text="Search" />
+                        <TextField layoutX="166.0" layoutY="35.0" />
+                        <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searh for drinks here:" />
+                        <Text layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for ingredients here:" />
+                        <Text layoutX="25.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for recipes here:" />
+                        <TextField layoutX="166.0" layoutY="108.0" />
+                        <TextField layoutX="166.0" layoutY="187.0" />
+                        <Button layoutX="339.0" layoutY="35.0" mnemonicParsing="false" text="Search" />
+                        <Button layoutX="339.0" layoutY="107.0" mnemonicParsing="false" text="Search" />
+                        <Button layoutX="339.0" layoutY="186.0" mnemonicParsing="false" text="Search" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -42,6 +42,7 @@
                         <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="237.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
                         <Text layoutX="300.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
                         <Button fx:id="ingredientDeleteButton" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
+                        <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
                      </children>
                   </AnchorPane>
             </content>
