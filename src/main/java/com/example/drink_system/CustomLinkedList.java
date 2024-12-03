@@ -50,6 +50,24 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
         return true; //data successfully deleted
     }
 
+    //ANOTHER WAY TO DELETE
+    public void remove(int i) { // i used as node number
+        if (i == 0) {
+            this.head = head.next; // assigns to component 0 value of next one
+        } else {
+            int n = 1; // if index is not 0, start counting from 1
+            Node<G> count = this.head; // start from the head
+            while (count != null) {
+                if (n == i) {
+                    count.next = count.next.next; // remove by skipping it
+                    break;
+                }
+                count = count.next; // moving to the next node
+                n++; // increase until it matches the index
+            }
+        }
+    }
+
     //search for an element in the list
     public boolean search(G data) {
         Node<G> current = head; //start from the head
@@ -90,6 +108,20 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
         }
         return null; //index is out of bounds
     }
+
+    //combines get at index and search; used for UPDATE method
+    public void setAtIndex(int index, G element) { //index looks for specific index, g for data in that index
+        if (index < 0 || index >= size()) { //ensures if the given index is valid
+            throw new IndexOutOfBoundsException("index out of range: " + index); //debug
+        }
+
+        Node<G> current = head; //starts at the head
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        current.setContents(element); // replace the data
+    }
+
 
     //clear the entire list
     public void clear() {

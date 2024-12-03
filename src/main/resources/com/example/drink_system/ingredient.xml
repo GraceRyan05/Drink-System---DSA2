@@ -1,10 +1,45 @@
 <object-stream>
   <com.example.drink__system.CustomLinkedList>
     <head>
+      <next>
+        <next>
+          <next>
+            <next>
+              <next>
+                <contents class="com.example.drink_system.Ingredients">
+                  <ingredientName>Iamtired</ingredientName>
+                  <textualDescription>hjas</textualDescription>
+                  <alcoholContent>1.0</alcoholContent>
+                </contents>
+              </next>
+              <contents class="com.example.drink_system.Ingredients">
+                <ingredientName>Cola</ingredientName>
+                <textualDescription>Sweet</textualDescription>
+                <alcoholContent>0.0</alcoholContent>
+              </contents>
+            </next>
+            <contents class="com.example.drink_system.Ingredients">
+              <ingredientName>Not milk </ingredientName>
+              <textualDescription>def</textualDescription>
+              <alcoholContent>0.0</alcoholContent>
+            </contents>
+          </next>
+          <contents class="com.example.drink_system.Ingredients">
+            <ingredientName>New</ingredientName>
+            <textualDescription>123</textualDescription>
+            <alcoholContent>0.0</alcoholContent>
+          </contents>
+        </next>
+        <contents class="com.example.drink_system.Ingredients">
+          <ingredientName>Sambooka</ingredientName>
+          <textualDescription>akal</textualDescription>
+          <alcoholContent>40.0</alcoholContent>
+        </contents>
+      </next>
       <contents class="com.example.drink_system.Ingredients">
-        <ingredientName>Vodka</ingredientName>
-        <textualDescription>Descitiption</textualDescription>
-        <alcoholContent>40.0</alcoholContent>
+        <ingredientName>new </ingredientName>
+        <textualDescription>aksja</textualDescription>
+        <alcoholContent>321.0</alcoholContent>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>
