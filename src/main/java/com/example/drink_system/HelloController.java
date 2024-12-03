@@ -74,10 +74,29 @@ public class HelloController {
     }
 
 
+    @FXML
+    private ComboBox<String> deleteIngredientComboBox;
     public void deleteIngredient(ActionEvent event) {
         //I am not sure how you do the delete method
 
+        String ingredientComboBox = deleteIngredientComboBox.getValue(); //gets the value from the combobox
+        Ingredients ingredientToDelete = null;
+        for (Ingredients ingredient : ingredientsList) {
+            if (ingredient.toString().equals(ingredientComboBox)) {
+                ingredientToDelete = ingredient;
+            }
+        }
+        if (ingredientToDelete != null) {
+            ingredientsList.delete(ingredientToDelete);
+            ingredientListView.getItems().remove(ingredientToDelete.toString());
+            deleteIngredientComboBox.getItems().remove(ingredientToDelete.toString());
+
+            ingredientListView.getItems();
+
+
+        }
     }
+
 
 
     public void saveIngredients() throws IOException {
