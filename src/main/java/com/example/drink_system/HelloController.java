@@ -64,13 +64,10 @@ public class HelloController {
     private int selectedIngredientIndex = -1;
     public void addIngredient (ActionEvent event) throws IOException{
         selectedIngredientIndex = ingredientListView.getSelectionModel().getSelectedIndex(); //in case of updated ingredient
-
         String name = ingredientNameField.getText();
         String description = ingredientDescriptionField.getText();
         double alcContent = Double.parseDouble(ingredientAlcContentField.getText());
-
         Ingredients newIngredient = new Ingredients(name, description, alcContent);
-
         if (selectedIngredientIndex >= 0) {
             // update existing ingredient
             ingredientsCustomLinkedList.setAtIndex(selectedIngredientIndex, newIngredient);
@@ -82,9 +79,7 @@ public class HelloController {
             ingredientListView.getItems().add(newIngredient.toString());
             saveIngredients();
         }
-
-
-        selectedIngredientIndex = -1;
+        selectedIngredientIndex = -1; //prob will delete later on
         ingredientNameField.clear();
         ingredientDescriptionField.clear();
         ingredientAlcContentField.clear();
@@ -111,11 +106,12 @@ public class HelloController {
     public void deleteIngredient(ActionEvent event) throws Exception {
         int selectedIndex = ingredientListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex != -1 ){
+            ingredientsCustomLinkedList.remove(selectedIndex);
             ingredientListView.getItems().remove(selectedIndex);
-            ingredientsList.remove(selectedIndex);
             saveIngredients();
-        }
 
+        }
+        ingredientListView.getSelectionModel().clearSelection();
     }
 
 
@@ -166,8 +162,12 @@ public class HelloController {
     @FXML
     private Button drinkDeleteButton;
     @FXML
+    private Button drinkUpdateButton;
+    @FXML
     private ListView drinkListView;
     private CustomLinkedList<Drinks> drinksCustomLinkedList = new CustomLinkedList<>();
+
+    private int selectedDrinkIndex = -1;
     public void addDrink (ActionEvent event) throws IOException{
         String name = drinkNameField.getText();
         String description = drinkDescriptionField.getText();
@@ -176,36 +176,53 @@ public class HelloController {
 
         Drinks newDrink = new Drinks(name, description, origin, url);
 
-        drinksCustomLinkedList.add(newDrink);
-        drinkListView.getItems().add(newDrink.toString());
-        deleteDrinkComboBox.getItems().add(newDrink.toString());
-        saveDrinks();
+        if (selectedDrinkIndex >= 0){
+            drinksCustomLinkedList.setAtIndex(selectedDrinkIndex, newDrink);
+            drinkListView.getItems().set(selectedDrinkIndex, newDrink);
+            saveDrinks();
+        }
+        else{
+            drinksCustomLinkedList.add(newDrink);
+            drinkListView.getItems().add(newDrink.toString());
+            saveDrinks();
+        }
 
+        drinkListView.getSelectionModel().clearSelection();
         drinkNameField.clear();
         drinkDescriptionField.clear();
         drinkCountryOfOriginField.clear();
         drinkURLImageField.clear();
     }
 
+
+
+    public void updateDrink(ActionEvent event) {
+        selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
+        if (selectedDrinkIndex >= 0) {
+            // get the selected drink
+            Drinks selectedDrink = drinksCustomLinkedList.getAtIndex(selectedDrinkIndex);
+
+            // populate text fields with the selected drink data
+            drinkNameField.setText(selectedDrink.getDrinkName());
+            drinkDescriptionField.setText(selectedDrink.getTextualDescription());
+            drinkCountryOfOriginField.setText(selectedDrink.getCountryOfOrigin());
+            drinkURLImageField.setText(selectedDrink.getImageURL());
+
+        } else {
+            System.out.println("No ingredient selected for update.");
+        }
+    }
     @FXML
     private ComboBox<String> deleteDrinkComboBox;
-    public void deleteDrink(ActionEvent event){
-        String drinkComboBox = deleteDrinkComboBox.getValue(); //gets the value from the combobox
-        Drinks drinkToDelete = null;
-        for (Drinks drink : drinksList) {
-            if (drink.toString().equals(drinkComboBox)) {
-                drinkToDelete = drink;
-            }
-        }
-        if (drinkToDelete != null) {
-            drinksList.delete(drinkToDelete);
-            drinkListView.getItems().remove(drinkToDelete.toString());
-            deleteDrinkComboBox.getItems().remove(drinkToDelete.toString());
-
-            drinkListView.getItems();
-
+    public void deleteDrink(ActionEvent event) throws Exception {
+        int selectedIndex = drinkListView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex != -1 ){
+            drinksCustomLinkedList.remove(selectedIndex);
+            drinkListView.getItems().remove(selectedIndex);
+            saveDrinks();
 
         }
+        drinkListView.getSelectionModel().clearSelection();
     }
 
 

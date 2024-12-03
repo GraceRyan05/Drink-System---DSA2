@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -37,10 +36,10 @@
                         <TextField fx:id="ingredientNameField" layoutX="29.0" layoutY="79.0" promptText="NAME" />
                         <TextField fx:id="ingredientDescriptionField" layoutX="29.0" layoutY="129.0" promptText="DESCIPTION " />
                         <TextField fx:id="ingredientAlcContentField" layoutX="29.0" layoutY="178.0" promptText="ALCOHOL CONTENT" />
-                        <ListView fx:id="ingredientListView" layoutX="300.0" layoutY="79.0" prefHeight="291.0" prefWidth="252.0" />
+                        <ListView fx:id="ingredientListView" layoutX="221.0" layoutY="79.0" prefHeight="291.0" prefWidth="331.0" />
                         <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add an ingredient to the system:" />
                         <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="237.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
-                        <Text layoutX="300.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
+                        <Text layoutX="221.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
                         <Button fx:id="ingredientDeleteButton" layoutX="496.0" layoutY="382.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
                         <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="382.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
                      </children>
@@ -55,12 +54,12 @@
                         <TextField fx:id="drinkCountryOfOriginField" layoutX="29.0" layoutY="137.0" promptText="PLACE OF ORIGIN" />
                         <TextField fx:id="drinkDescriptionField" layoutX="29.0" layoutY="206.0" promptText="DESCRIPTION" />
                         <TextField fx:id="drinkURLImageField" layoutX="29.0" layoutY="273.0" promptText="IMAGE URL" />
-                        <ListView fx:id="drinkListView" layoutX="331.0" layoutY="67.0" prefHeight="278.0" prefWidth="217.0" />
+                        <ListView fx:id="drinkListView" layoutX="227.0" layoutY="67.0" prefHeight="278.0" prefWidth="322.0" />
                         <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="333.0" mnemonicParsing="false" onAction="#addDrink" text="Add" />
-                        <Button fx:id="drinkDeleteButton" layoutX="242.0" layoutY="439.0" mnemonicParsing="false" onAction="#deleteDrink" text="Delete" />
+                        <Button fx:id="drinkDeleteButton" layoutX="498.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteDrink" text="Delete" />
                         <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a drink to the system:" />
-                        <Text layoutX="331.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
-                        <ComboBox fx:id="deleteDrinkComboBox" layoutX="56.0" layoutY="439.0" prefWidth="150.0" />
+                        <Text layoutX="227.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
+                        <Button fx:id="drinkUpdateButton" layoutX="421.0" layoutY="359.0" mnemonicParsing="false" onAction="#updateDrink" text="Update" />
                      </children></AnchorPane>
               </content>
             </Tab>

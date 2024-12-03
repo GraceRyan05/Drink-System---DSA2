@@ -12,45 +12,70 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
     //First item in the list - starts as null as the list is initially empty
 
 
+    //TO DISCUSS
+    //the problem is that the new node becoming a head
+
     //method to add a new node to the head of the list
+//    public void add(G data) {
+//        Node<G> newNode = new Node<>(); //create a new node
+//
+//        newNode.setContents(data); //sets the node's content to the provided data
+//        newNode.next = head; //link the new node to the current head of the list
+//        head = newNode; //update head to the new node -- adds it to the front of the list
+//    }
+
     public void add(G data) {
-        Node<G> newNode = new Node<>(); //create a new node
-
+        // create a new node and set its data
+        Node<G> newNode = new Node<>();
         newNode.setContents(data); //sets the node's content to the provided data
-        newNode.next = head; //link the new node to the current head of the list
-        head = newNode; //update head to the new node -- adds it to the front of the list
+        newNode.next = null; // the new node will be the last, so it points to null (in easier words it says that the next node is null, so it doesnt exist yet)
+
+        // if the list is empty, make the new node the head
+        if (head == null) {
+            head = newNode;
+        } else {
+            // traverse to the end of the list
+            Node<G> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            // link the last node to the new node
+            current.next = newNode;
+        }
     }
 
+    //TO DISCUSS
     //method to delete a node from the list
-    public boolean delete(G data) {
-        if (head == null) { //checks if list is empty
-            return false;
-        }
-
-        if (head.getContents().equals(data)) { //checks if the first node has the data to delete
-            //if it does, it removes the node by updating the head
-            head = head.next; //remove the head node
-            return true; //converts the value to true
-        }
-        //search for the node to be deleted, keep track of the previous node
-        Node<G> current = head;
-        Node<G> previous = null;
-
-        //if the data isn't at the head, it goes through the list until it finds the node to delete
-        while (current != null && !current.getContents().equals(data)) {
-            previous = current; //move to the previous node
-            current = current.next; //move to the next noe
-        }
-        //if data was not present in the list
-        if (current == null) {
-            return false;
-        }
-        //unlink the node from the linked list
-        previous.next = current.next;
-        return true; //data successfully deleted
-    }
+//    public boolean delete(G data) {
+//        if (head == null) { //checks if list is empty
+//            return false;
+//        }
+//
+//        if (head.getContents().equals(data)) { //checks if the first node has the data to delete
+//            //if it does, it removes the node by updating the head
+//            head = head.next; //remove the head node
+//            return true; //converts the value to true
+//        }
+//        //search for the node to be deleted, keep track of the previous node
+//        Node<G> current = head;
+//        Node<G> previous = null;
+//
+//        //if the data isn't at the head, it goes through the list until it finds the node to delete
+//        while (current != null && !current.getContents().equals(data)) {
+//            previous = current; //move to the previous node
+//            current = current.next; //move to the next noe
+//        }
+//        //if data was not present in the list
+//        if (current == null) {
+//            return false;
+//        }
+//        //unlink the node from the linked list
+//        previous.next = current.next;
+//        return true; //data successfully deleted
+//    }
 
     //ANOTHER WAY TO DELETE
+    //just uses node numbers(indexes)
     public void remove(int i) { // i used as node number
         if (i == 0) {
             this.head = head.next; // assigns to component 0 value of next one

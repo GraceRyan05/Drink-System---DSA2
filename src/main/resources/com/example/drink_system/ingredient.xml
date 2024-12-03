@@ -2,44 +2,16 @@
   <com.example.drink__system.CustomLinkedList>
     <head>
       <next>
-        <next>
-          <next>
-            <next>
-              <next>
-                <contents class="com.example.drink_system.Ingredients">
-                  <ingredientName>Iamtired</ingredientName>
-                  <textualDescription>hjas</textualDescription>
-                  <alcoholContent>1.0</alcoholContent>
-                </contents>
-              </next>
-              <contents class="com.example.drink_system.Ingredients">
-                <ingredientName>Cola</ingredientName>
-                <textualDescription>Sweet</textualDescription>
-                <alcoholContent>0.0</alcoholContent>
-              </contents>
-            </next>
-            <contents class="com.example.drink_system.Ingredients">
-              <ingredientName>Not milk </ingredientName>
-              <textualDescription>def</textualDescription>
-              <alcoholContent>0.0</alcoholContent>
-            </contents>
-          </next>
-          <contents class="com.example.drink_system.Ingredients">
-            <ingredientName>New</ingredientName>
-            <textualDescription>123</textualDescription>
-            <alcoholContent>0.0</alcoholContent>
-          </contents>
-        </next>
         <contents class="com.example.drink_system.Ingredients">
-          <ingredientName>Sambooka</ingredientName>
-          <textualDescription>akal</textualDescription>
-          <alcoholContent>40.0</alcoholContent>
+          <ingredientName>3</ingredientName>
+          <textualDescription>4</textualDescription>
+          <alcoholContent>5.0</alcoholContent>
         </contents>
       </next>
       <contents class="com.example.drink_system.Ingredients">
-        <ingredientName>new </ingredientName>
-        <textualDescription>aksja</textualDescription>
-        <alcoholContent>321.0</alcoholContent>
+        <ingredientName>1</ingredientName>
+        <textualDescription>2</textualDescription>
+        <alcoholContent>3.0</alcoholContent>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>
