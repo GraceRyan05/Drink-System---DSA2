@@ -6,6 +6,8 @@ public class Ingredients {
     private double alcoholContent;
 
 
+
+
     public Ingredients(String ingredientName, String textualDescription, double alcoholContent) {
         this.ingredientName = ingredientName;
         this.textualDescription = textualDescription;
