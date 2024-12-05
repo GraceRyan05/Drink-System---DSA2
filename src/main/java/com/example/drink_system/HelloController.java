@@ -25,6 +25,19 @@ public class HelloController {
     public void initialize(){
         loadIngredients();
         loadDrinks();
+        loadRecipe();
+
+
+        // Populate ListViews for creating recipes
+        for (Ingredients ingredient : ingredientsCustomLinkedList) {
+            ingredientsInRecipeListView.getItems().add(ingredient.toString());
+        }
+        for (Drinks drink : drinksCustomLinkedList) {
+            drinksInRecipeListView.getItems().add(drink.toString());
+        }
+
+        ingredientsInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //allows for multiple items to be selected to add to the recipe
+        drinksInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
 
@@ -251,6 +264,134 @@ public class HelloController {
             System.out.println("drinks are loaded.");//debug
             for (int i = 0; i < drinksCustomLinkedList.size(); i++) { //populating listview with loaded ingredients
                 drinkListView.getItems().add(drinksCustomLinkedList.getAtIndex(i).toString());
+            }
+            in.close();
+        } catch (Exception error) {
+            error.printStackTrace();
+            System.err.println("error loading from xml: " + error.getMessage()); //debug
+        }
+    }
+
+
+
+
+
+
+
+
+    //Recipes tab
+    @FXML
+    private TextField recipeNameTextField;
+    @FXML
+    private Button recipeAddButton;
+    @FXML
+    private Button recipeDeleteButton;
+    @FXML
+    private ListView ingredientsInRecipeListView;
+    @FXML
+    private ListView drinksInRecipeListView;
+
+    @FXML
+    private ListView recipeListView;
+
+    private CustomLinkedList<Recipes> recipesCustomLinkedList = new CustomLinkedList<>();
+
+    private int selectedRecipeIndex = -1;
+    public void addRecipe (ActionEvent event) throws IOException{
+        selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex(); //in case of updated ingredient
+
+        String recipeName = recipeNameTextField.getText();
+        Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getItems();
+        Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getItems();
+
+
+        Recipes newRecipe = new Recipes(recipeName, drinksInRecipe, ingredientsInRecipe);
+        if (selectedRecipeIndex >= 0) {
+            // update existing recipe
+            recipesCustomLinkedList.setAtIndex(selectedRecipeIndex, newRecipe);
+            recipeListView.getItems().set(selectedRecipeIndex, newRecipe.toString());
+            saveRecipe();
+        } else {
+            // add new recipe
+            recipesCustomLinkedList.add(newRecipe);
+            recipeListView.getItems().add(newRecipe.toString());
+            saveRecipe();
+        }
+        selectedRecipeIndex = -1; //-delete later????
+        recipeNameTextField.clear();
+        ingredientsInRecipeListView.getSelectionModel().clearSelection();
+        drinksInRecipeListView.getSelectionModel().clearSelection();
+        ingredientListView.getSelectionModel().clearSelection();
+    }
+
+    //To put selected index's information into text fields
+    public void updateRecipe(ActionEvent event) {
+        selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex();
+        if (selectedRecipeIndex >= 0) {
+            // get the selected recipe
+            Recipes selectedRecipe = recipesCustomLinkedList.getAtIndex(selectedRecipeIndex);
+
+            // populate text fields with the selected recipe's data
+            recipeNameTextField.setText(selectedRecipe.getRecipeName());
+
+
+
+            //clear existing items in the list
+            ingredientsInRecipeListView.getItems().clear();
+            drinksInRecipeListView.getItems().clear();
+
+            //populating the items
+            for (Ingredients ingredients : ingredientsList) {
+                ingredientsInRecipeListView.getItems().add(ingredients.toString());
+            }
+
+            for (Drinks drinks : drinksList) {
+                drinksInRecipeListView.getItems().add(drinks.toString());
+            }
+
+        } else {
+            System.out.println("No recipe selected for update.");
+        }
+    }
+
+
+    public void deleteRecipe(ActionEvent event) throws Exception {
+        int selectedIndex = recipeListView.getSelectionModel().getSelectedIndex();
+        if(selectedIndex != -1 ){
+            recipesCustomLinkedList.remove(selectedIndex);
+            recipeListView.getItems().remove(selectedIndex);
+            saveRecipe();
+
+        }
+        recipeListView.getSelectionModel().clearSelection();
+    }
+
+
+    public void saveRecipe() throws IOException {
+        File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
+        XStream xstream = new XStream(new DomDriver());
+        xstream.allowTypeHierarchy(Recipes.class);
+        xstream.allowTypeHierarchy(CustomLinkedList.class);
+        ObjectOutputStream os = xstream.createObjectOutputStream(new FileWriter(file));
+        os.writeObject(recipesCustomLinkedList);
+        System.out.println ("recipes added to the file"); //---future debug
+        os.close();
+    }
+
+    public void loadRecipe() {
+        File file = new File("src/main/resources/com/example/drink_system/recipe.xml");
+        XStream xstream = new XStream(new DomDriver());
+        XStream.setupDefaultSecurity(xstream);
+        //list of classes for serialisation
+        xstream.allowTypeHierarchy(Recipes.class);
+        xstream.allowTypeHierarchy(CustomLinkedList.class);
+        try {
+            ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
+            //load the xml data into recipeList
+            recipesCustomLinkedList = (CustomLinkedList<Recipes>) in.readObject();
+            System.out.println("recipes are loaded.");//debug
+            for (int i = 0; i < recipesCustomLinkedList.size(); i++) { //populating listview with loaded recipes
+                recipeListView.getItems().add(recipesCustomLinkedList.getAtIndex(i).toString());
             }
             in.close();
         } catch (Exception error) {
