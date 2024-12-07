@@ -70,14 +70,15 @@
                         <Text layoutX="41.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a recipe to the system:" />
                         <ListView fx:id="recipeListView" layoutX="287.0" layoutY="71.0" prefHeight="291.0" prefWidth="252.0" />
                         <Text layoutX="334.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all recipes:" />
-                        <Button fx:id="recipeDeleteButton" layoutX="443.0" layoutY="432.0" mnemonicParsing="false" onAction="#deleteRecipe" text="Delete" />
-                        <Button fx:id="recipeAddButton" layoutX="106.0" layoutY="439.0" mnemonicParsing="false" onAction="#addRecipe" text="Add" />
+                        <Button fx:id="recipeDeleteButton" layoutX="462.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteRecipe" text="Delete" />
+                        <Button fx:id="recipeAddButton" layoutX="113.0" layoutY="402.0" mnemonicParsing="false" onAction="#addRecipe" text="Add" />
                         <TextField fx:id="recipeNameTextField" layoutX="125.0" layoutY="75.0" prefHeight="26.0" prefWidth="148.0" />
                         <Text layoutX="22.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recipe Name:" />
                         <Text layoutX="2.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients Included:" />
                         <Text layoutX="16.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drinks Included:" />
                         <ListView fx:id="ingredientsInRecipeListView" layoutX="125.0" layoutY="141.0" prefHeight="75.0" prefWidth="148.0" />
                         <ListView fx:id="drinksInRecipeListView" layoutX="125.0" layoutY="253.0" prefHeight="77.0" prefWidth="148.0" />
+                        <Button layoutX="323.0" layoutY="402.0" mnemonicParsing="false" text="Update" />
                      </children></AnchorPane>
               </content>
             </Tab>

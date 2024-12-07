@@ -25,7 +25,7 @@ public class HelloController {
     public void initialize(){
         loadIngredients();
         loadDrinks();
-        loadRecipe();
+        loadRecipes();
 
 
         // Populate ListViews for creating recipes
@@ -338,8 +338,11 @@ public class HelloController {
 
             //clear existing items in the list
             ingredientsInRecipeListView.getItems().clear();
+            ingredientsInRecipeListView.getItems().addAll(selectedRecipe.getIngredientDetails());
             drinksInRecipeListView.getItems().clear();
+            drinksInRecipeListView.getItems().addAll(selectedRecipe.getDrinkDetails());
 
+            /*
             //populating the items
             for (Ingredients ingredients : ingredientsList) {
                 ingredientsInRecipeListView.getItems().add(ingredients.toString());
@@ -348,6 +351,8 @@ public class HelloController {
             for (Drinks drinks : drinksList) {
                 drinksInRecipeListView.getItems().add(drinks.toString());
             }
+
+             */
 
         } else {
             System.out.println("No recipe selected for update.");
@@ -368,7 +373,7 @@ public class HelloController {
 
 
     public void saveRecipe() throws IOException {
-        File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
+        File file = new File("src/main/resources/com/example/drink_system/recipes.xml");
         XStream xstream = new XStream(new DomDriver());
         xstream.allowTypeHierarchy(Recipes.class);
         xstream.allowTypeHierarchy(CustomLinkedList.class);
@@ -378,8 +383,8 @@ public class HelloController {
         os.close();
     }
 
-    public void loadRecipe() {
-        File file = new File("src/main/resources/com/example/drink_system/recipe.xml");
+    public void loadRecipes() {
+        File file = new File("src/main/resources/com/example/drink_system/recipes.xml");
         XStream xstream = new XStream(new DomDriver());
         XStream.setupDefaultSecurity(xstream);
         //list of classes for serialisation
