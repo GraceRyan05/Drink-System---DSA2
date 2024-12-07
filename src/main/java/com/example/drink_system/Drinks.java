@@ -1,5 +1,7 @@
 package com.example.drink_system;
 
+import java.util.Objects;
+
 public class Drinks {
     private String drinkName;
     private String countryOfOrigin;
@@ -48,4 +50,17 @@ public class Drinks {
         return "Drink Name: " + drinkName + ", Country of Origin: " + countryOfOrigin + ", Textual Description: " + textualDescription + ", Image URL: " +imageURL;
     }
 
+
+    //generated equals method
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Drinks drinks)) return false;
+        return Objects.equals(drinkName, drinks.drinkName) && Objects.equals(countryOfOrigin, drinks.countryOfOrigin) && Objects.equals(textualDescription, drinks.textualDescription) && Objects.equals(imageURL, drinks.imageURL);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(drinkName, countryOfOrigin, textualDescription, imageURL);
+    }
 }

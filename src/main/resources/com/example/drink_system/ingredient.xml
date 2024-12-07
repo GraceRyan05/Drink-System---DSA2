@@ -1,18 +1,3 @@
 <object-stream>
-  <com.example.drink__system.CustomLinkedList>
-    <head>
-      <next>
-        <contents class="com.example.drink_system.Ingredients">
-          <ingredientName>3</ingredientName>
-          <textualDescription>4</textualDescription>
-          <alcoholContent>5.0</alcoholContent>
-        </contents>
-      </next>
-      <contents class="com.example.drink_system.Ingredients">
-        <ingredientName>1</ingredientName>
-        <textualDescription>2</textualDescription>
-        <alcoholContent>3.0</alcoholContent>
-      </contents>
-    </head>
-  </com.example.drink__system.CustomLinkedList>
+  <com.example.drink__system.CustomLinkedList/>
 </object-stream>

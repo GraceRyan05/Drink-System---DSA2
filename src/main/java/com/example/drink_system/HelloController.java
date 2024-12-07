@@ -301,8 +301,8 @@ public class HelloController {
         selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex(); //in case of updated ingredient
 
         String recipeName = recipeNameTextField.getText();
-        Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getItems();
-        Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getItems();
+        Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getSelectionModel().getSelectedItem();
+        Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getSelectionModel().getSelectedItem();
 
 
         Recipes newRecipe = new Recipes(recipeName, drinksInRecipe, ingredientsInRecipe);
