@@ -30,10 +30,10 @@ public class HelloController {
 
         // Populate ListViews for creating recipes
         for (Ingredients ingredient : ingredientsCustomLinkedList) {
-            ingredientsInRecipeListView.getItems().add(ingredient.toString());
+            ingredientsInRecipeListView.getItems().add(ingredient);
         }
         for (Drinks drink : drinksCustomLinkedList) {
-            drinksInRecipeListView.getItems().add(drink.toString());
+            drinksInRecipeListView.getItems().add(drink);
         }
 
         ingredientsInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //allows for multiple items to be selected to add to the recipe
@@ -325,40 +325,50 @@ public class HelloController {
     }
 
     //To put selected index's information into text fields
-    public void updateRecipe(ActionEvent event) {
+    public void updateRecipe(ActionEvent event) throws IOException {
         selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex();
         if (selectedRecipeIndex >= 0) {
             // get the selected recipe
-            Recipes selectedRecipe = recipesCustomLinkedList.getAtIndex(selectedRecipeIndex);
-
-            // populate text fields with the selected recipe's data
-            recipeNameTextField.setText(selectedRecipe.getRecipeName());
+           // Recipes selectedRecipe = recipesCustomLinkedList.getAtIndex(selectedRecipeIndex);
 
 
+            String recipeName = recipeNameTextField.getText();
+            Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getSelectionModel().getSelectedItem();
+            Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getSelectionModel().getSelectedItem();
 
             //clear existing items in the list
-            ingredientsInRecipeListView.getItems().clear();
-            ingredientsInRecipeListView.getItems().addAll(selectedRecipe.getIngredientDetails());
-            drinksInRecipeListView.getItems().clear();
-            drinksInRecipeListView.getItems().addAll(selectedRecipe.getDrinkDetails());
+          // ingredientsInRecipeListView.getItems().clear();
+           // ingredientsInRecipeListView.getItems().addAll(selectedRecipe.getIngredientDetails());
+            // drinksInRecipeListView.getItems().clear();
+            //drinksInRecipeListView.getItems().addAll(selectedRecipe.getDrinkDetails());
 
-            /*
-            //populating the items
-            for (Ingredients ingredients : ingredientsList) {
-                ingredientsInRecipeListView.getItems().add(ingredients.toString());
-            }
 
-            for (Drinks drinks : drinksList) {
-                drinksInRecipeListView.getItems().add(drinks.toString());
-            }
+            // populate text fields with the selected recipe's data
+          //  recipeNameTextField.setText(selectedRecipe.getRecipeName());
 
-             */
+            Recipes updatedRecipe = new Recipes(recipeName, drinksInRecipe, ingredientsInRecipe);
+
+            //update the selected recipe with the updated data
+            recipesCustomLinkedList.update(selectedRecipeIndex, updatedRecipe);
+
+            //show the changes in the list view
+            recipeListView.getItems().set(selectedRecipeIndex, updatedRecipe.toString());
+
+            //save the updated recipe
+            saveRecipe();
+
+            //clear selection and text fields
+            selectedRecipeIndex = -1; //-delete later????
+            recipeNameTextField.clear();
+            ingredientsInRecipeListView.getSelectionModel().clearSelection();
+            drinksInRecipeListView.getSelectionModel().clearSelection();
+            ingredientListView.getSelectionModel().clearSelection();
+
 
         } else {
             System.out.println("No recipe selected for update.");
         }
     }
-
 
     public void deleteRecipe(ActionEvent event) throws Exception {
         int selectedIndex = recipeListView.getSelectionModel().getSelectedIndex();
@@ -404,5 +414,14 @@ public class HelloController {
             System.err.println("error loading from xml: " + error.getMessage()); //debug
         }
     }
+
+
+    //method to reset entire system
+    @FXML
+    private void resetDrinkSystem(ActionEvent event) {
+
+    }
+
+
 
 }

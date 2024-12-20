@@ -1,3 +1,25 @@
 <object-stream>
-  <com.example.drink__system.CustomLinkedList/>
+  <com.example.drink__system.CustomLinkedList>
+    <head>
+      <next>
+        <contents class="com.example.drink_system.Recipes">
+          <recipeName>changed</recipeName>
+          <drinkDetails>
+            <drinkName>3</drinkName>
+            <countryOfOrigin>desc</countryOfOrigin>
+            <textualDescription>place</textualDescription>
+            <imageURL>12321</imageURL>
+          </drinkDetails>
+          <ingredientDetails>
+            <ingredientName>sfds</ingredientName>
+            <textualDescription>dsf</textualDescription>
+            <alcoholContent>234.0</alcoholContent>
+          </ingredientDetails>
+        </contents>
+      </next>
+      <contents class="com.example.drink_system.Recipes">
+        <recipeName>new1</recipeName>
+      </contents>
+    </head>
+  </com.example.drink__system.CustomLinkedList>
 </object-stream>

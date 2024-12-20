@@ -78,7 +78,7 @@
                         <Text layoutX="16.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drinks Included:" />
                         <ListView fx:id="ingredientsInRecipeListView" layoutX="125.0" layoutY="141.0" prefHeight="75.0" prefWidth="148.0" />
                         <ListView fx:id="drinksInRecipeListView" layoutX="125.0" layoutY="253.0" prefHeight="77.0" prefWidth="148.0" />
-                        <Button layoutX="323.0" layoutY="402.0" mnemonicParsing="false" text="Update" />
+                        <Button layoutX="323.0" layoutY="402.0" mnemonicParsing="false" onAction="#updateRecipe" text="Update" />
                      </children></AnchorPane>
               </content>
             </Tab>

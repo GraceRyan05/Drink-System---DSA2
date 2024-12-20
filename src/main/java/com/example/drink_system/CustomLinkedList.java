@@ -44,6 +44,16 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
         }
     }
 
+    //updates the value with new data
+    public void update(int index, G newData) {
+        Node<G> current = head; //start at the head
+        for (int i = 0; i < index; i++) {
+            current = current.next; //move to the next node
+        }
+        //update the node content
+        current.setContents(newData);
+    }
+
     //TO DISCUSS
     //method to delete a node from the list
 //    public boolean delete(G data) {
