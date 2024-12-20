@@ -212,19 +212,36 @@ public class HelloController {
     public void updateDrink(ActionEvent event) {
         selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
         if (selectedDrinkIndex >= 0) {
-            // get the selected drink
-            Drinks selectedDrink = drinksCustomLinkedList.getAtIndex(selectedDrinkIndex);
 
-            // populate text fields with the selected drink data
-            drinkNameField.setText(selectedDrink.getDrinkName());
-            drinkDescriptionField.setText(selectedDrink.getTextualDescription());
-            drinkCountryOfOriginField.setText(selectedDrink.getCountryOfOrigin());
-            drinkURLImageField.setText(selectedDrink.getImageURL());
+            String drinkName = drinkNameField.getText();
+            String countryOfOrigin = drinkCountryOfOriginField.getText();
+            String description = drinkDescriptionField.getText();
+            String image = drinkURLImageField.getText();
+
+            Drinks updatedDrink = new Drinks(drinkName, countryOfOrigin, description, image);
+
+            //update the selected drink with the updated data
+            drinksCustomLinkedList.update(selectedDrinkIndex, updatedDrink);
+
+            //show the changes in the list view
+            drinkListView.getItems().set(selectedDrinkIndex, updatedDrink.toString());
+
+            //save the updated drink
+            //saveDrink();
+
+            //clear selection and text fields
+            selectedDrinkIndex = -1; //-delete later????
+            drinkNameField.clear();
+            drinkCountryOfOriginField.clear();
+            drinkDescriptionField.clear();
+            drinkURLImageField.clear();
 
         } else {
-            System.out.println("No ingredient selected for update.");
+            System.out.println("No drink selected for update.");
         }
     }
+
+
     @FXML
     private ComboBox<String> deleteDrinkComboBox;
     public void deleteDrink(ActionEvent event) throws Exception {
@@ -328,23 +345,11 @@ public class HelloController {
     public void updateRecipe(ActionEvent event) throws IOException {
         selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex();
         if (selectedRecipeIndex >= 0) {
-            // get the selected recipe
-           // Recipes selectedRecipe = recipesCustomLinkedList.getAtIndex(selectedRecipeIndex);
 
 
             String recipeName = recipeNameTextField.getText();
             Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getSelectionModel().getSelectedItem();
             Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getSelectionModel().getSelectedItem();
-
-            //clear existing items in the list
-          // ingredientsInRecipeListView.getItems().clear();
-           // ingredientsInRecipeListView.getItems().addAll(selectedRecipe.getIngredientDetails());
-            // drinksInRecipeListView.getItems().clear();
-            //drinksInRecipeListView.getItems().addAll(selectedRecipe.getDrinkDetails());
-
-
-            // populate text fields with the selected recipe's data
-          //  recipeNameTextField.setText(selectedRecipe.getRecipeName());
 
             Recipes updatedRecipe = new Recipes(recipeName, drinksInRecipe, ingredientsInRecipe);
 
