@@ -100,20 +100,36 @@ public class HelloController {
     }
 
     //this method put selected index`s info into text fields
-    public void updateIngredient(ActionEvent event) {
+    public void updateIngredient(ActionEvent event) throws IOException {
         selectedIngredientIndex = ingredientListView.getSelectionModel().getSelectedIndex();
         if (selectedIngredientIndex >= 0) {
-            // get the selected ingredient
-            Ingredients selectedIngredient = ingredientsCustomLinkedList.getAtIndex(selectedIngredientIndex);
 
-            // populate text fields with the selected ingredient's data
-            ingredientNameField.setText(selectedIngredient.getIngredientName());
-            ingredientDescriptionField.setText(selectedIngredient.getTextualDescription());
-            ingredientAlcContentField.setText(String.valueOf(selectedIngredient.getAlcoholContent()));
-        } else {
-            System.out.println("No ingredient selected for update.");
+            String ingredientName = ingredientNameField.getText();
+            String ingredientDescription = ingredientDescriptionField.getText();
+            Double ingredientAlcoholContent = Double.valueOf(ingredientAlcContentField.getText());
+
+            Ingredients updatedIngredient = new Ingredients(ingredientName, ingredientDescription, ingredientAlcoholContent);
+
+            //update the selected ingredient with the updated data
+            ingredientsCustomLinkedList.update(selectedIngredientIndex, updatedIngredient);
+
+            //show the changes in the list view
+            ingredientListView.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
+
+            //save the updated ingredient
+            saveIngredients();
+
+            //clear selection and text fields
+            selectedIngredientIndex = -1;
+            ingredientNameField.clear();
+            ingredientDescriptionField.clear();
+            ingredientAlcContentField.clear();
         }
-    }
+            else {
+                System.out.println("No ingredient selected for update.");
+            }
+
+        }
 
 
     public void deleteIngredient(ActionEvent event) throws Exception {
@@ -209,7 +225,8 @@ public class HelloController {
 
 
 
-    public void updateDrink(ActionEvent event) {
+    //method to update the drinks
+    public void updateDrink(ActionEvent event) throws IOException {
         selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
         if (selectedDrinkIndex >= 0) {
 
@@ -227,7 +244,7 @@ public class HelloController {
             drinkListView.getItems().set(selectedDrinkIndex, updatedDrink.toString());
 
             //save the updated drink
-            //saveDrink();
+            saveDrinks();
 
             //clear selection and text fields
             selectedDrinkIndex = -1; //-delete later????
