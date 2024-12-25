@@ -2,9 +2,9 @@
   <com.example.drink__system.CustomLinkedList>
     <head>
       <contents class="com.example.drink_system.Ingredients">
-        <ingredientName>changed</ingredientName>
-        <textualDescription>new</textualDescription>
-        <alcoholContent>23.0</alcoholContent>
+        <ingredientName>new name</ingredientName>
+        <textualDescription>desc</textualDescription>
+        <alcoholContent>321.0</alcoholContent>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>

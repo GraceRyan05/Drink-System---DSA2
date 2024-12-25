@@ -106,7 +106,7 @@ public class HelloController {
 
             String ingredientName = ingredientNameField.getText();
             String ingredientDescription = ingredientDescriptionField.getText();
-            Double ingredientAlcoholContent = Double.valueOf(ingredientAlcContentField.getText());
+            double ingredientAlcoholContent = Double.parseDouble(ingredientAlcContentField.getText());
 
             Ingredients updatedIngredient = new Ingredients(ingredientName, ingredientDescription, ingredientAlcoholContent);
 
@@ -228,7 +228,8 @@ public class HelloController {
     //method to update the drinks
     public void updateDrink(ActionEvent event) throws IOException {
         selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
-        if (selectedDrinkIndex >= 0) {
+        if (selectedDrinkIndex > -1 ) {
+
 
             String drinkName = drinkNameField.getText();
             String countryOfOrigin = drinkCountryOfOriginField.getText();
@@ -305,12 +306,6 @@ public class HelloController {
             System.err.println("error loading from xml: " + error.getMessage()); //debug
         }
     }
-
-
-
-
-
-
 
 
     //Recipes tab
@@ -438,10 +433,18 @@ public class HelloController {
     }
 
 
+    @FXML
+    private Button resetWholeDrinkSystem;
     //method to reset entire system
     @FXML
     private void resetDrinkSystem(ActionEvent event) {
+        ingredientListView.getItems().clear();
+        drinkListView.getItems().clear();
+        recipeListView.getItems().clear();
 
+        ingredientsList.clear();
+        drinksList.clear();
+        recipesList.clear();
     }
 
 

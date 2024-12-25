@@ -1,19 +1,11 @@
 <object-stream>
   <com.example.drink__system.CustomLinkedList>
     <head>
-      <next>
-        <contents class="com.example.drink_system.Drinks">
-          <drinkName>4</drinkName>
-          <countryOfOrigin>origin</countryOfOrigin>
-          <textualDescription>descr</textualDescription>
-          <imageURL>123</imageURL>
-        </contents>
-      </next>
       <contents class="com.example.drink_system.Drinks">
-        <drinkName>3</drinkName>
-        <countryOfOrigin>desc</countryOfOrigin>
-        <textualDescription>place</textualDescription>
-        <imageURL>12321</imageURL>
+        <drinkName>new name </drinkName>
+        <countryOfOrigin>new place</countryOfOrigin>
+        <textualDescription>new descriptionn</textualDescription>
+        <imageURL>qwerty</imageURL>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>

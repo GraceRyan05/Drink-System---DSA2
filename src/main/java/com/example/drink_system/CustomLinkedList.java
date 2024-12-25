@@ -29,7 +29,6 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
         Node<G> newNode = new Node<>();
         newNode.setContents(data); //sets the node's content to the provided data
         newNode.next = null; // the new node will be the last, so it points to null (in easier words it says that the next node is null, so it doesnt exist yet)
-
         // if the list is empty, make the new node the head
         if (head == null) {
             head = newNode;
@@ -210,11 +209,14 @@ public class CustomLinkedList<G> implements Iterable<G>{ //need to implement ite
     }
 
 
+
     //Needed as the linkedList implements iterator - returns an instance of CustomIterator, which makes the list usable in a loop
     @Override
     public Iterator<G> iterator() {
         return new CustomIterator();
     }
+
+
 
 }
 
