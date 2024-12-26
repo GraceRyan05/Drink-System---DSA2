@@ -46,13 +46,19 @@ public class HelloController {
     private CustomLinkedList<Ingredients> ingredientsList;
     private CustomLinkedList<Recipes> recipesList;
 
-
+    //define the hash table instances
+    private CustomHashT<String, Drinks> drinksHashTable;
+    private CustomHashT<String, Ingredients> ingredientsHashTable;
     //Controller constructor
     public HelloController() {
         this.drinksList = new CustomLinkedList<>();
         this.ingredientsList = new CustomLinkedList<>();
         this.recipesList = new CustomLinkedList<>();
+
+        drinksHashTable = new CustomHashT<>(20);
+        ingredientsHashTable = new CustomHashT<>(20); //I hope its enough
     }
+
 
 
 
@@ -81,17 +87,22 @@ public class HelloController {
         String description = ingredientDescriptionField.getText();
         double alcContent = Double.parseDouble(ingredientAlcContentField.getText());
         Ingredients newIngredient = new Ingredients(name, description, alcContent);
+
+        int hashKey = ingredientsHashTable.customHashCode(name);
         if (selectedIngredientIndex >= 0) {
             // update existing ingredient
             ingredientsCustomLinkedList.setAtIndex(selectedIngredientIndex, newIngredient);
             ingredientListView.getItems().set(selectedIngredientIndex, newIngredient.toString());
+            ingredientsHashTable.put(String.valueOf(hashKey), newIngredient);
             saveIngredients();
         } else {
             // add new ingredient
             ingredientsCustomLinkedList.add(newIngredient);
             ingredientListView.getItems().add(newIngredient.toString());
+            ingredientsHashTable.put(String.valueOf(hashKey), newIngredient);
             saveIngredients();
         }
+
         selectedIngredientIndex = -1; //prob will delete later on
         ingredientNameField.clear();
         ingredientDescriptionField.clear();
@@ -116,6 +127,8 @@ public class HelloController {
             //show the changes in the list view
             ingredientListView.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
 
+            ingredientsHashTable.put(ingredientName, updatedIngredient); //idk ab this one
+
             //save the updated ingredient
             saveIngredients();
 
@@ -137,12 +150,43 @@ public class HelloController {
         if(selectedIndex != -1 ){
             ingredientsCustomLinkedList.remove(selectedIndex);
             ingredientListView.getItems().remove(selectedIndex);
+            ingredientsHashTable.remove(ingredientsCustomLinkedList.getAtIndex(selectedIndex).getIngredientName()); //simply gets the name of ingredient
             saveIngredients();
-
         }
         ingredientListView.getSelectionModel().clearSelection();
     }
 
+    @FXML
+    public TextField ingredientSeacrh;
+    @FXML
+    public ListView ingredientSearchResult;
+
+    @FXML
+    public Button ingredientSearchButton;
+
+    public void searchIngredientByName(ActionEvent event){
+        ingredientSearchResult.getItems().clear();
+
+        String name = ingredientSeacrh.getText();
+        Ingredients result = ingredientsHashTable.get(name);
+
+        int hashKey = ingredientsHashTable.customHashCode(name); // Get hash value
+
+        if (result != null){
+            for(int i = 0; i < ingredientsCustomLinkedList.size(); i++){
+                Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
+                int ingredientHash = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
+                if (ingredientHash == hashKey && ingredient.getIngredientName().equalsIgnoreCase(name)) {
+                    ingredientSearchResult.getItems().add(ingredient.toString());
+                }
+            ingredientSearchResult.getItems().add(result.toString());
+        }
+        }
+        else {
+            String str = "no ingredients found";
+            ingredientSearchResult.getItems().add(str);
+        }
+    }
 
     public void saveIngredients() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
@@ -151,6 +195,7 @@ public class HelloController {
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         ObjectOutputStream os = xstream.createObjectOutputStream(new FileWriter(file));
         os.writeObject(ingredientsCustomLinkedList);
+        os.writeObject(ingredientsHashTable);
         System.out.println ("ingredients added to the file"); //future debug
         os.close();
     }
@@ -166,9 +211,15 @@ public class HelloController {
             ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
             //load the xml data into showsList
             ingredientsCustomLinkedList = (CustomLinkedList<Ingredients>) in.readObject();
+           ingredientsHashTable = new CustomHashT<>(10);//clear and reinitialize existing hash table
             System.out.println("ingredients are loaded.");//debug
             for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) { //populating listview with loaded ingredients
+                Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
                 ingredientListView.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
+
+                int hashKey = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
+
+                ingredientsHashTable.put(String.valueOf(hashKey), ingredient);
             }
             in.close();
         } catch (Exception error) {
@@ -229,8 +280,6 @@ public class HelloController {
     public void updateDrink(ActionEvent event) throws IOException {
         selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
         if (selectedDrinkIndex > -1 ) {
-
-
             String drinkName = drinkNameField.getText();
             String countryOfOrigin = drinkCountryOfOriginField.getText();
             String description = drinkDescriptionField.getText();
@@ -357,8 +406,6 @@ public class HelloController {
     public void updateRecipe(ActionEvent event) throws IOException {
         selectedRecipeIndex = recipeListView.getSelectionModel().getSelectedIndex();
         if (selectedRecipeIndex >= 0) {
-
-
             String recipeName = recipeNameTextField.getText();
             Drinks drinksInRecipe = (Drinks) drinksInRecipeListView.getSelectionModel().getSelectedItem();
             Ingredients ingredientsInRecipe = (Ingredients) ingredientsInRecipeListView.getSelectionModel().getSelectedItem();

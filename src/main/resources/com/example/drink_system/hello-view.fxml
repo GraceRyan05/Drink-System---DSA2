@@ -45,10 +45,10 @@
                         <Button fx:id="ingredientDeleteButton" layoutX="507.0" layoutY="476.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
                         <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="476.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
                         <TextField fx:id="ingredientSeacrh" layoutX="225.0" layoutY="54.0" promptText="Find " />
-                        <Button fx:id="ingredientSearchButton" layoutX="393.0" layoutY="54.0" mnemonicParsing="false" text="Search" />
+                        <Button fx:id="ingredientSearchButton" layoutX="393.0" layoutY="54.0" mnemonicParsing="false" onAction="#searchIngredientByName" text="Search" />
                         <ComboBox fx:id="ingredientFilterBy" layoutX="454.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
-                        <ListView layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
-                        <Text layoutX="228.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="190.814453125" />
+                        <ListView fx:id="ingredientSearchResult" layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
+                        <Text layoutX="225.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for an ingredient in the system:" wrappingWidth="215.61444091796875" />
                      </children>
                   </AnchorPane>
             </content>

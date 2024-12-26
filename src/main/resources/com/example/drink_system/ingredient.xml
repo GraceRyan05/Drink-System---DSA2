@@ -2,6 +2,20 @@
   <com.example.drink__system.CustomLinkedList>
     <head>
       <next>
+        <next>
+          <next>
+            <contents class="com.example.drink_system.Ingredients">
+              <ingredientName>1</ingredientName>
+              <textualDescription>23</textualDescription>
+              <alcoholContent>3.0</alcoholContent>
+            </contents>
+          </next>
+          <contents class="com.example.drink_system.Ingredients">
+            <ingredientName>1</ingredientName>
+            <textualDescription>2</textualDescription>
+            <alcoholContent>3.0</alcoholContent>
+          </contents>
+        </next>
         <contents class="com.example.drink_system.Ingredients">
           <ingredientName>change</ingredientName>
           <textualDescription>hey</textualDescription>
@@ -15,4 +29,42 @@
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>
+  <com.example.drink__system.CustomHashT>
+    <table>
+      <com.example.drink__system.HNode>
+        <key class="string">new name</key>
+        <value class="com.example.drink_system.Ingredients">
+          <ingredientName>new name</ingredientName>
+          <textualDescription>desc</textualDescription>
+          <alcoholContent>321.0</alcoholContent>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <com.example.drink__system.HNode>
+        <key class="string">1</key>
+        <value class="com.example.drink_system.Ingredients">
+          <ingredientName>1</ingredientName>
+          <textualDescription>23</textualDescription>
+          <alcoholContent>3.0</alcoholContent>
+        </value>
+        <next>
+          <key class="string">change</key>
+          <value class="com.example.drink_system.Ingredients">
+            <ingredientName>change</ingredientName>
+            <textualDescription>hey</textualDescription>
+            <alcoholContent>22.0</alcoholContent>
+          </value>
+        </next>
+      </com.example.drink__system.HNode>
+    </table>
+    <size>3</size>
+    <capacity>10</capacity>
+  </com.example.drink__system.CustomHashT>
 </object-stream>
