@@ -88,18 +88,28 @@ public class HelloController {
         double alcContent = Double.parseDouble(ingredientAlcContentField.getText());
         Ingredients newIngredient = new Ingredients(name, description, alcContent);
 
-        int hashKey = ingredientsHashTable.customHashCode(name);
+        //generating the UNIQUE  hash key
+        String baseKey = name; //start with name
+        int hashKey = ingredientsHashTable.customHashCode(baseKey); //generate hash code
+        //WE WANT FREAKING UNIQUE HASH KEY
+        int count = 0;
+        String uniqueKey = baseKey + "_" + hashKey + "_" + count; //combine everything together to ensure that we have UNIQUE key
+        while (ingredientsHashTable.get(uniqueKey) != null) { //CHECKING IF THE KEY IS NOT UNIQUE
+            count++;
+            uniqueKey = baseKey + "_" + hashKey + "_" + count; //MAKING SURE THAT WE HAVE REALLY UNIQUE KEY
+        }
+
         if (selectedIngredientIndex >= 0) {
             // update existing ingredient
             ingredientsCustomLinkedList.setAtIndex(selectedIngredientIndex, newIngredient);
             ingredientListView.getItems().set(selectedIngredientIndex, newIngredient.toString());
-            ingredientsHashTable.put(String.valueOf(hashKey), newIngredient);
+            ingredientsHashTable.put(uniqueKey, newIngredient);
             saveIngredients();
         } else {
             // add new ingredient
             ingredientsCustomLinkedList.add(newIngredient);
             ingredientListView.getItems().add(newIngredient.toString());
-            ingredientsHashTable.put(String.valueOf(hashKey), newIngredient);
+            ingredientsHashTable.put(uniqueKey, newIngredient);
             saveIngredients();
         }
 
@@ -127,7 +137,7 @@ public class HelloController {
             //show the changes in the list view
             ingredientListView.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
 
-            ingredientsHashTable.put(ingredientName, updatedIngredient); //idk ab this one
+            ingredientsHashTable.put(ingredientName, updatedIngredient);
 
             //save the updated ingredient
             saveIngredients();
@@ -164,29 +174,28 @@ public class HelloController {
     @FXML
     public Button ingredientSearchButton;
 
-    public void searchIngredientByName(ActionEvent event){
-        ingredientSearchResult.getItems().clear();
-
-        String name = ingredientSeacrh.getText();
-        Ingredients result = ingredientsHashTable.get(name);
-
-        int hashKey = ingredientsHashTable.customHashCode(name); // Get hash value
-
-        if (result != null){
-            for(int i = 0; i < ingredientsCustomLinkedList.size(); i++){
-                Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
-                int ingredientHash = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
-                if (ingredientHash == hashKey && ingredient.getIngredientName().equalsIgnoreCase(name)) {
-                    ingredientSearchResult.getItems().add(ingredient.toString());
-                }
-            ingredientSearchResult.getItems().add(result.toString());
+    public void searchIngredientByName(ActionEvent event) {
+        ingredientSearchResult.getItems().clear(); //clear previous results
+        // get the name to search
+        String searchName = ingredientSeacrh.getText();
+        int hashKey = ingredientsHashTable.customHashCode(searchName); //get hash value
+        boolean found = false;
+        //search the hash table for matching hash keys
+        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
+            Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
+            //generate the hash for each ingredient in the list
+            int ingredientHash = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
+            //check if hashes match and names match
+            if (ingredientHash == hashKey && ingredient.getIngredientName().equalsIgnoreCase(searchName)) {
+                ingredientSearchResult.getItems().add(ingredient.toString());
+                found = true;
+            }
         }
-        }
-        else {
-            String str = "no ingredients found";
-            ingredientSearchResult.getItems().add(str);
+        if (!found) {
+            ingredientSearchResult.getItems().add("No ingredients found");
         }
     }
+
 
     public void saveIngredients() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
@@ -216,10 +225,9 @@ public class HelloController {
             for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) { //populating listview with loaded ingredients
                 Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
                 ingredientListView.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
-
                 int hashKey = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
-
-                ingredientsHashTable.put(String.valueOf(hashKey), ingredient);
+                String uniqueKey = ingredient.getIngredientName() + "_" + hashKey + "_" + i; //unique key ;-;
+                ingredientsHashTable.put(uniqueKey, ingredient);
             }
             in.close();
         } catch (Exception error) {
