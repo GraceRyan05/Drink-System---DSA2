@@ -1,6 +1,13 @@
 <object-stream>
   <com.example.drink__system.CustomLinkedList>
     <head>
+      <next>
+        <contents class="com.example.drink_system.Ingredients">
+          <ingredientName>change</ingredientName>
+          <textualDescription>hey</textualDescription>
+          <alcoholContent>22.0</alcoholContent>
+        </contents>
+      </next>
       <contents class="com.example.drink_system.Ingredients">
         <ingredientName>new name</ingredientName>
         <textualDescription>desc</textualDescription>

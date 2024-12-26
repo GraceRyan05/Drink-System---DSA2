@@ -35,18 +35,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="ingredientNameField" layoutX="29.0" layoutY="104.0" promptText="NAME" />
-                        <TextField fx:id="ingredientDescriptionField" layoutX="29.0" layoutY="150.0" promptText="DESCIPTION " />
-                        <TextField fx:id="ingredientAlcContentField" layoutX="29.0" layoutY="198.0" promptText="ALCOHOL CONTENT" />
-                        <ListView fx:id="ingredientListView" layoutX="228.0" layoutY="104.0" prefHeight="291.0" prefWidth="331.0" />
+                        <TextField fx:id="ingredientNameField" layoutX="29.0" layoutY="66.0" promptText="NAME" />
+                        <TextField fx:id="ingredientDescriptionField" layoutX="29.0" layoutY="117.0" promptText="DESCIPTION " />
+                        <TextField fx:id="ingredientAlcContentField" layoutX="29.0" layoutY="176.0" promptText="ALCOHOL CONTENT" />
+                        <ListView fx:id="ingredientListView" layoutX="226.0" layoutY="176.0" prefHeight="291.0" prefWidth="333.0" />
                         <Text layoutX="29.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add an ingredient to the system:" />
-                        <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="250.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
-                        <Text layoutX="221.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
-                        <Button fx:id="ingredientDeleteButton" layoutX="508.0" layoutY="424.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
-                        <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="424.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
-                        <TextField fx:id="ingredientSeacrh" layoutX="226.0" layoutY="67.0" promptText="Find " />
-                        <Button fx:id="ingredientSearchButton" layoutX="394.0" layoutY="67.0" mnemonicParsing="false" text="Search" />
-                        <ComboBox fx:id="ingredientFilterBy" layoutX="454.0" layoutY="67.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
+                        <Button fx:id="ingredientAddButton" layoutX="29.0" layoutY="230.0" mnemonicParsing="false" onAction="#addIngredient" text="Add" />
+                        <Text layoutX="228.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all ingredients:" />
+                        <Button fx:id="ingredientDeleteButton" layoutX="507.0" layoutY="476.0" mnemonicParsing="false" onAction="#deleteIngredient" text="Delete" />
+                        <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="476.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
+                        <TextField fx:id="ingredientSeacrh" layoutX="225.0" layoutY="54.0" promptText="Find " />
+                        <Button fx:id="ingredientSearchButton" layoutX="393.0" layoutY="54.0" mnemonicParsing="false" text="Search" />
+                        <ComboBox fx:id="ingredientFilterBy" layoutX="454.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
+                        <ListView layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
+                        <Text layoutX="228.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="190.814453125" />
                      </children>
                   </AnchorPane>
             </content>
@@ -55,16 +57,21 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="drinkNameField" layoutX="28.0" layoutY="70.0" promptText="NAME" />
-                        <TextField fx:id="drinkCountryOfOriginField" layoutX="29.0" layoutY="137.0" promptText="PLACE OF ORIGIN" />
-                        <TextField fx:id="drinkDescriptionField" layoutX="29.0" layoutY="206.0" promptText="DESCRIPTION" />
-                        <TextField fx:id="drinkURLImageField" layoutX="29.0" layoutY="273.0" promptText="IMAGE URL" />
-                        <ListView fx:id="drinkListView" layoutX="227.0" layoutY="67.0" prefHeight="278.0" prefWidth="322.0" />
-                        <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="333.0" mnemonicParsing="false" onAction="#addDrink" text="Add" />
-                        <Button fx:id="drinkDeleteButton" layoutX="498.0" layoutY="359.0" mnemonicParsing="false" onAction="#deleteDrink" text="Delete" />
+                        <TextField fx:id="drinkNameField" layoutX="28.0" layoutY="62.0" promptText="NAME" />
+                        <TextField fx:id="drinkCountryOfOriginField" layoutX="28.0" layoutY="135.0" promptText="PLACE OF ORIGIN" />
+                        <TextField fx:id="drinkDescriptionField" layoutX="28.0" layoutY="209.0" promptText="DESCRIPTION" />
+                        <TextField fx:id="drinkURLImageField" layoutX="28.0" layoutY="286.0" promptText="IMAGE URL" />
+                        <ListView fx:id="drinkListView" layoutX="221.0" layoutY="169.0" prefHeight="278.0" prefWidth="333.0" />
+                        <Button fx:id="drinkAddButton" layoutX="28.0" layoutY="351.0" mnemonicParsing="false" onAction="#addDrink" text="Add" />
+                        <Button fx:id="drinkDeleteButton" layoutX="498.0" layoutY="461.0" mnemonicParsing="false" onAction="#deleteDrink" text="Delete" />
                         <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a drink to the system:" />
-                        <Text layoutX="227.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
-                        <Button fx:id="drinkUpdateButton" layoutX="421.0" layoutY="359.0" mnemonicParsing="false" onAction="#updateDrink" text="Update" />
+                        <Text layoutX="221.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
+                        <Button fx:id="drinkUpdateButton" layoutX="422.0" layoutY="461.0" mnemonicParsing="false" onAction="#updateDrink" text="Update" />
+                        <ListView layoutX="220.0" layoutY="75.0" prefHeight="52.0" prefWidth="334.0" />
+                        <TextField fx:id="ingredientSeacrh1" layoutX="220.0" layoutY="44.0" promptText="Find " />
+                        <Button fx:id="ingredientSearchButton1" layoutX="388.0" layoutY="44.0" mnemonicParsing="false" text="Search" />
+                        <ComboBox fx:id="ingredientFilterBy1" layoutX="450.0" layoutY="43.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
+                        <Text layoutX="220.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="194.01446533203125" />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -72,18 +79,23 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text layoutX="41.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a recipe to the system:" />
-                        <ListView fx:id="recipeListView" layoutX="287.0" layoutY="71.0" prefHeight="291.0" prefWidth="252.0" />
-                        <Text layoutX="334.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all recipes:" />
-                        <Button fx:id="recipeDeleteButton" layoutX="462.0" layoutY="402.0" mnemonicParsing="false" onAction="#deleteRecipe" text="Delete" />
-                        <Button fx:id="recipeAddButton" layoutX="113.0" layoutY="402.0" mnemonicParsing="false" onAction="#addRecipe" text="Add" />
-                        <TextField fx:id="recipeNameTextField" layoutX="125.0" layoutY="75.0" prefHeight="26.0" prefWidth="148.0" />
+                        <Text layoutX="41.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a recipe to the system:" />
+                        <ListView fx:id="recipeListView" layoutX="277.0" layoutY="185.0" prefHeight="291.0" prefWidth="309.0" />
+                        <Text layoutX="277.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all recipes:" />
+                        <Button fx:id="recipeDeleteButton" layoutX="526.0" layoutY="485.0" mnemonicParsing="false" onAction="#deleteRecipe" text="Delete" />
+                        <Button fx:id="recipeAddButton" layoutX="30.0" layoutY="363.0" mnemonicParsing="false" onAction="#addRecipe" text="Add" />
+                        <TextField fx:id="recipeNameTextField" layoutX="113.0" layoutY="75.0" prefHeight="26.0" prefWidth="148.0" />
                         <Text layoutX="22.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recipe Name:" />
                         <Text layoutX="2.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients Included:" />
                         <Text layoutX="16.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drinks Included:" />
-                        <ListView fx:id="ingredientsInRecipeListView" layoutX="125.0" layoutY="141.0" prefHeight="75.0" prefWidth="148.0" />
-                        <ListView fx:id="drinksInRecipeListView" layoutX="125.0" layoutY="253.0" prefHeight="77.0" prefWidth="148.0" />
-                        <Button layoutX="323.0" layoutY="402.0" mnemonicParsing="false" onAction="#updateRecipe" text="Update" />
+                        <ListView fx:id="ingredientsInRecipeListView" layoutX="113.0" layoutY="141.0" prefHeight="75.0" prefWidth="148.0" />
+                        <ListView fx:id="drinksInRecipeListView" layoutX="113.0" layoutY="247.0" prefHeight="77.0" prefWidth="148.0" />
+                        <Button layoutX="448.0" layoutY="485.0" mnemonicParsing="false" onAction="#updateRecipe" text="Update" />
+                        <Text layoutX="277.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a recipe in the system:" wrappingWidth="200.94061279296875" />
+                        <TextField fx:id="ingredientSeacrh11" layoutX="275.0" layoutY="53.0" promptText="Find " />
+                        <Button fx:id="ingredientSearchButton11" layoutX="424.0" layoutY="53.0" mnemonicParsing="false" text="Search" />
+                        <ComboBox fx:id="ingredientFilterBy11" layoutX="480.0" layoutY="52.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
+                        <ListView layoutX="276.0" layoutY="89.0" prefHeight="52.0" prefWidth="310.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
