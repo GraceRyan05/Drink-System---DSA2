@@ -14,10 +14,10 @@ class HNode<K, V>{
 
 
 public class CustomHashT<K, V> {
-    private HNode<K, V>[] table; //table is variable used to store array
+    public HNode<K, V>[] table; //table is variable used to store array
 
-    private int size; //size of array list
-    private int capacity; //current capacity of array list
+    public int size; //size of array list
+    public int capacity; //current capacity of array list
 
     //constructor for hash table
     public CustomHashT(int capacity) {

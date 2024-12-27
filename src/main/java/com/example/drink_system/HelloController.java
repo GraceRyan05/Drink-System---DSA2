@@ -178,35 +178,44 @@ public class HelloController {
 
     public void searchIngredientByName(String name) {
         boolean found = false;
-        //search the hash table for matching hash keys
-        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
-            Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
-            //check if hashes match and names match
-            if (ingredient.getIngredientName().equalsIgnoreCase(name)) {
-                ingredientSearchResult.getItems().add(ingredient.toString());
-                found = true;
+        for (int i = 0; i < ingredientsHashTable.capacity; i++) { //directly access the table array
+            HNode<String, Ingredients> node = ingredientsHashTable.table[i]; //start of bucket chain
+            //traverse the chain in each bucket
+            while (node != null) {
+                Ingredients ingredient = node.value; //access value
+                if (ingredient.getIngredientName().contains(name)) {
+                    ingredientSearchResult.getItems().add(ingredient.toString());
+                    found = true;
+                }
+                node = node.next; //move to the next node
             }
         }
         if (!found) {
-            ingredientSearchResult.getItems().add("No ingredients found");
+            ingredientSearchResult.getItems().add("no ingredients with such name");
         }
     }
 
+
     public void searchIngredientByDescription(String keyWords) {
         boolean found = false;
-        //search the hash table for matching hash keys
-        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
-            Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
-            //check if hashes match and names match
-            if(ingredient.getTextualDescription().contains(keyWords)){
-                ingredientSearchResult.getItems().add(ingredient.toString());
-                found = true;
+        //iterate through all buckets
+        for (int i = 0; i < ingredientsHashTable.capacity; i++) { //directly access the table array
+            HNode<String, Ingredients> node = ingredientsHashTable.table[i]; //start of bucket chain
+            //traverse the chain in each bucket
+            while (node != null) {
+                Ingredients ingredient = node.value; //access value
+                if (ingredient.getTextualDescription().contains(keyWords)) {
+                    ingredientSearchResult.getItems().add(ingredient.toString());
+                    found = true;
+                }
+                node = node.next; //move to the next node
             }
         }
         if (!found) {
-            ingredientSearchResult.getItems().add("No ingredients found");
+            ingredientSearchResult.getItems().add("no ingredients found with description containing: " + keyWords);
         }
     }
+
 
     @FXML
     public ComboBox<String> ingredientFilterBy;
