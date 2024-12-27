@@ -46,7 +46,7 @@
                         <Button fx:id="ingredientUpdateButton" layoutX="426.0" layoutY="476.0" mnemonicParsing="false" onAction="#updateIngredient" text="Update" />
                         <TextField fx:id="ingredientSeacrh" layoutX="225.0" layoutY="54.0" promptText="Find " />
                         <Button fx:id="ingredientSearchButton" layoutX="506.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchSearch" text="Search" />
-                        <ComboBox fx:id="ingredientFilterBy" layoutX="388.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText=" search by" />
+                        <ComboBox fx:id="ingredientFilterBy" layoutX="388.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <ListView fx:id="ingredientSearchResult" layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
                         <Text layoutX="225.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for an ingredient in the system:" wrappingWidth="215.61444091796875" />
                      </children>
@@ -67,10 +67,10 @@
                         <Text layoutX="28.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add a drink to the system:" />
                         <Text layoutX="221.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of all drinks:" />
                         <Button fx:id="drinkUpdateButton" layoutX="422.0" layoutY="461.0" mnemonicParsing="false" onAction="#updateDrink" text="Update" />
-                        <ListView layoutX="220.0" layoutY="75.0" prefHeight="52.0" prefWidth="334.0" />
-                        <TextField fx:id="ingredientSeacrh1" layoutX="220.0" layoutY="44.0" promptText="Find " />
-                        <Button fx:id="ingredientSearchButton1" layoutX="388.0" layoutY="44.0" mnemonicParsing="false" text="Search" />
-                        <ComboBox fx:id="ingredientFilterBy1" layoutX="450.0" layoutY="43.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
+                        <ListView fx:id="drinkSearchResult" layoutX="220.0" layoutY="75.0" prefHeight="52.0" prefWidth="334.0" />
+                        <TextField fx:id="drinkSearch" layoutX="220.0" layoutY="44.0" promptText="Find " />
+                        <Button fx:id="drinkSearchButton" layoutX="503.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchSearchDrink" text="Search" />
+                        <ComboBox fx:id="drinkFilterBy" layoutX="384.0" layoutY="43.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <Text layoutX="220.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="194.01446533203125" />
                      </children></AnchorPane>
               </content>

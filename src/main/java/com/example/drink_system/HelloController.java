@@ -41,6 +41,8 @@ public class HelloController {
 
 
         ingredientFilterBy.getItems().addAll("Name", "Description");
+        drinkFilterBy.getItems().addAll("Name", "Description");
+
     }
 
 
@@ -52,6 +54,7 @@ public class HelloController {
     //define the hash table instances
     private CustomHashT<String, Drinks> drinksHashTable;
     private CustomHashT<String, Ingredients> ingredientsHashTable;
+    private CustomHashT< String, Recipes> recipesHashTable;
     //Controller constructor
     public HelloController() {
         this.drinksList = new CustomLinkedList<>();
@@ -60,6 +63,7 @@ public class HelloController {
 
         drinksHashTable = new CustomHashT<>(20);
         ingredientsHashTable = new CustomHashT<>(20); //I hope its enough
+        recipesHashTable = new CustomHashT<>(20); //also guessing 20 capacity
     }
 
 
@@ -258,7 +262,7 @@ public class HelloController {
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         try {
             ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
-            //load the xml data into showsList
+            //load the xml data into ingredientsList
             ingredientsCustomLinkedList = (CustomLinkedList<Ingredients>) in.readObject();
            ingredientsHashTable = new CustomHashT<>(10);//clear and reinitialize existing hash table
             System.out.println("ingredients are loaded.");//debug
@@ -297,6 +301,8 @@ public class HelloController {
 
     private int selectedDrinkIndex = -1;
     public void addDrink (ActionEvent event) throws IOException{
+        selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex(); //in case of updated drink
+
         String name = drinkNameField.getText();
         String description = drinkDescriptionField.getText();
         String origin = drinkCountryOfOriginField.getText();
@@ -304,14 +310,33 @@ public class HelloController {
 
         Drinks newDrink = new Drinks(name, description, origin, url);
 
+        //generating the unique hash key
+        String baseKey = name; //start with name
+        int hashKey = drinksHashTable.customHashCode(baseKey); //generate hash code
+
+        //looking for unique hash key
+        int count = 0;
+        String uniqueKey = baseKey + "_" + hashKey + "_" + count; //combine everything together to ensure we have a unique key
+
+        while (drinksHashTable.get(uniqueKey) != null) { //checking if the key is not unique
+            count++;
+            uniqueKey = baseKey + "_" + hashKey + "_" + count; //making sure the key is properly unique
+        }
+
         if (selectedDrinkIndex >= 0){
+            //update existing drink
             drinksCustomLinkedList.setAtIndex(selectedDrinkIndex, newDrink);
             drinkListView.getItems().set(selectedDrinkIndex, newDrink);
+
+            drinksHashTable.put(uniqueKey, newDrink);
+
             saveDrinks();
         }
         else{
             drinksCustomLinkedList.add(newDrink);
             drinkListView.getItems().add(newDrink.toString());
+
+            drinksHashTable.put(uniqueKey, newDrink);
             saveDrinks();
         }
 
@@ -327,7 +352,8 @@ public class HelloController {
     //method to update the drinks
     public void updateDrink(ActionEvent event) throws IOException {
         selectedDrinkIndex = drinkListView.getSelectionModel().getSelectedIndex();
-        if (selectedDrinkIndex > -1 ) {
+
+        if (selectedDrinkIndex >= 0 ) {
             String drinkName = drinkNameField.getText();
             String countryOfOrigin = drinkCountryOfOriginField.getText();
             String description = drinkDescriptionField.getText();
@@ -340,6 +366,8 @@ public class HelloController {
 
             //show the changes in the list view
             drinkListView.getItems().set(selectedDrinkIndex, updatedDrink.toString());
+
+            drinksHashTable.put(drinkName, updatedDrink);
 
             //save the updated drink
             saveDrinks();
@@ -360,14 +388,84 @@ public class HelloController {
     @FXML
     private ComboBox<String> deleteDrinkComboBox;
     public void deleteDrink(ActionEvent event) throws Exception {
+
         int selectedIndex = drinkListView.getSelectionModel().getSelectedIndex();
         if(selectedIndex != -1 ){
             drinksCustomLinkedList.remove(selectedIndex);
             drinkListView.getItems().remove(selectedIndex);
+
+            drinksHashTable.remove(drinksCustomLinkedList.getAtIndex(selectedIndex).getDrinkName()); //simply get the name of the drink
             saveDrinks();
 
         }
         drinkListView.getSelectionModel().clearSelection();
+    }
+
+    @FXML
+    public TextField drinkSearch;
+    @FXML
+    public ListView drinkSearchResult;
+    @FXML
+    public Button drinkSearchButton;
+
+    public void searchDrinkByName (String name) {
+        boolean found = false;
+        for (int i = 0; i < drinksHashTable.capacity; i++) { //directly access the table array
+            HNode<String, Drinks> node = drinksHashTable.table[i]; //start of bucket chain
+            //traverse the chain in each bucket
+            while (node != null) {
+                Drinks drink = node.value; //access value
+                if (drink.getDrinkName().contains(name)) {
+                    drinkSearchResult.getItems().add(drink.toString());
+                    found = true;
+                }
+                node = node.next; //move to the next node
+            }
+        }
+        if (!found) {
+            drinkSearchResult.getItems().add("No drinks with such name");
+        }
+    }
+
+    public void searchDrinksByDescription(String keyWords) {
+        boolean found = false;
+        //iterate through all buckets
+        for ( int i = 0; i < drinksHashTable.capacity; i++) { //directly access the table array
+            HNode<String, Drinks> node = drinksHashTable.table[i];
+            //start of bucket chain
+            //traverse the chain in each bucket
+            while(node != null) {
+                Drinks drink = node.value; //access value;
+                if (drink.getTextualDescription().contains(keyWords)) {
+                    drinkSearchResult.getItems().add(drink.toString());
+                    found = true;
+                }
+                node = node.next; //move to the next node
+            }
+        }
+        if (!found) {
+            drinkSearchResult.getItems().add("No drinks found with description containing: " + keyWords);
+        }
+    }
+
+    @FXML
+    public ComboBox<String> drinkFilterBy;
+    public void switchSearchDrink(ActionEvent event) {
+        //clear previous results
+        drinkSearchResult.getItems().clear();
+        String input = drinkSearch.getText(); //input text
+
+        //check if input if empty
+        if (input == null || input.trim().isEmpty()) {
+            drinkSearchResult.getItems().add("Please enter a search term.");
+            return;
+        }
+        if (drinkFilterBy.getValue().equals("Name")) {
+            searchDrinkByName(input);
+        }
+        else if (drinkFilterBy.getValue().equals("Description")) {
+            searchDrinksByDescription(input);
+        }
     }
 
 
@@ -378,6 +476,7 @@ public class HelloController {
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         ObjectOutputStream os = xstream.createObjectOutputStream(new FileWriter(file));
         os.writeObject(drinksCustomLinkedList);
+        os.writeObject(drinksHashTable);
         System.out.println ("drink added to the file"); //future debug
         os.close();
     }
@@ -393,9 +492,16 @@ public class HelloController {
             ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
             //load the xml data into showsList
             drinksCustomLinkedList = (CustomLinkedList<Drinks>) in.readObject();
+            drinksHashTable = new CustomHashT<>(10); //clear and reinitialize existing hash table
             System.out.println("drinks are loaded.");//debug
             for (int i = 0; i < drinksCustomLinkedList.size(); i++) { //populating listview with loaded ingredients
+                Drinks drink = drinksCustomLinkedList.getAtIndex(i);
+
                 drinkListView.getItems().add(drinksCustomLinkedList.getAtIndex(i).toString());
+
+                int hashKey = drinksHashTable.customHashCode(drink.getDrinkName());
+                String uniqueKey = drink.getDrinkName() + "_" + hashKey + "_" + i; //unique key
+                drinksHashTable.put(uniqueKey, drink);
             }
             in.close();
         } catch (Exception error) {

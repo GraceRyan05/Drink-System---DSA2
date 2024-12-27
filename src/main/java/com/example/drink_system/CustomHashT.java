@@ -107,7 +107,7 @@ public class CustomHashT<K, V> {
     //more of debug and test method at the moment
     public void display() {
         for (int i = 0; i < capacity; i++) {
-            System.out.print("bucket " + i + ": "); //the hash tab;e is implemented as an array of buckets
+            System.out.print("bucket " + i + ": "); //the hash table is implemented as an array of buckets
             HNode<K, V> current = table[i];
             while (current != null) {
                 System.out.print("[" + current.key + ": " + current.value + "] -> ");

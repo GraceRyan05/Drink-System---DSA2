@@ -1,6 +1,14 @@
 <object-stream>
   <com.example.drink__system.CustomLinkedList>
     <head>
+      <next>
+        <contents class="com.example.drink_system.Drinks">
+          <drinkName>hey</drinkName>
+          <countryOfOrigin>no</countryOfOrigin>
+          <textualDescription>dkjhsku</textualDescription>
+          <imageURL>zjhs</imageURL>
+        </contents>
+      </next>
       <contents class="com.example.drink_system.Drinks">
         <drinkName>new name </drinkName>
         <countryOfOrigin>new place</countryOfOrigin>
@@ -9,4 +17,36 @@
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>
+  <com.example.drink__system.CustomHashT>
+    <table>
+      <com.example.drink__system.HNode>
+        <key class="string">hey_9_0</key>
+        <value class="com.example.drink_system.Drinks">
+          <drinkName>hey</drinkName>
+          <countryOfOrigin>no</countryOfOrigin>
+          <textualDescription>dkjhsku</textualDescription>
+          <imageURL>zjhs</imageURL>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <com.example.drink__system.HNode>
+        <key class="string">new name _8_0</key>
+        <value class="com.example.drink_system.Drinks">
+          <drinkName>new name </drinkName>
+          <countryOfOrigin>new place</countryOfOrigin>
+          <textualDescription>new descriptionn</textualDescription>
+          <imageURL>qwerty</imageURL>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+    </table>
+    <size>2</size>
+    <capacity>10</capacity>
+  </com.example.drink__system.CustomHashT>
 </object-stream>
