@@ -38,6 +38,9 @@ public class HelloController {
 
         ingredientsInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //allows for multiple items to be selected to add to the recipe
         drinksInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+
+        ingredientFilterBy.getItems().addAll("Name", "Description");
     }
 
 
@@ -170,23 +173,16 @@ public class HelloController {
     public TextField ingredientSeacrh;
     @FXML
     public ListView ingredientSearchResult;
-
     @FXML
     public Button ingredientSearchButton;
 
-    public void searchIngredientByName(ActionEvent event) {
-        ingredientSearchResult.getItems().clear(); //clear previous results
-        // get the name to search
-        String searchName = ingredientSeacrh.getText();
-        int hashKey = ingredientsHashTable.customHashCode(searchName); //get hash value
+    public void searchIngredientByName(String name) {
         boolean found = false;
         //search the hash table for matching hash keys
         for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
             Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
-            //generate the hash for each ingredient in the list
-            int ingredientHash = ingredientsHashTable.customHashCode(ingredient.getIngredientName());
             //check if hashes match and names match
-            if (ingredientHash == hashKey && ingredient.getIngredientName().equalsIgnoreCase(searchName)) {
+            if (ingredient.getIngredientName().equalsIgnoreCase(name)) {
                 ingredientSearchResult.getItems().add(ingredient.toString());
                 found = true;
             }
@@ -196,6 +192,41 @@ public class HelloController {
         }
     }
 
+    public void searchIngredientByDescription(String keyWords) {
+        boolean found = false;
+        //search the hash table for matching hash keys
+        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
+            Ingredients ingredient = ingredientsCustomLinkedList.getAtIndex(i);
+            //check if hashes match and names match
+            if(ingredient.getTextualDescription().contains(keyWords)){
+                ingredientSearchResult.getItems().add(ingredient.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            ingredientSearchResult.getItems().add("No ingredients found");
+        }
+    }
+
+    @FXML
+    public ComboBox<String> ingredientFilterBy;
+    public void switchSearch(ActionEvent event){
+        //clear previous results
+        ingredientSearchResult.getItems().clear();
+        String input = ingredientSeacrh.getText(); //input text
+
+        //check if input is empty
+        if (input == null || input.trim().isEmpty()) {
+            ingredientSearchResult.getItems().add("Please enter a search term.");
+            return;
+        }
+        if (ingredientFilterBy.getValue().equals("Name")){
+            searchIngredientByName(input);
+        }
+        else if (ingredientFilterBy.getValue().equals("Description")){
+            searchIngredientByDescription(input);
+        }
+    }
 
     public void saveIngredients() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
