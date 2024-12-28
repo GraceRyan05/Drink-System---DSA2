@@ -42,6 +42,7 @@ public class HelloController {
 
         ingredientFilterBy.getItems().addAll("Name", "Description");
         drinkFilterBy.getItems().addAll("Name", "Description");
+        recipeFilterBy.getItems().addAll("Name");
 
     }
 
@@ -538,15 +539,29 @@ public class HelloController {
 
 
         Recipes newRecipe = new Recipes(recipeName, drinksInRecipe, ingredientsInRecipe);
+
+        //generating the unique hash key
+        String baseKey = recipeName; //start with the recipe name
+        int hashKey = recipesHashTable.customHashCode(baseKey); //generate hash code
+        //we want unique hash key
+        int count = 0;
+        String uniqueKey = baseKey + "_" + hashKey + "_" + count; //combine everything together to ensure we have unique key
+        while (recipesHashTable.get(uniqueKey) != null) { //checking if the key is not unique
+            count++;
+            uniqueKey = baseKey + "_" + hashKey + "_" + count; //making sure we really have unique key
+
+        }
         if (selectedRecipeIndex >= 0) {
             // update existing recipe
             recipesCustomLinkedList.setAtIndex(selectedRecipeIndex, newRecipe);
             recipeListView.getItems().set(selectedRecipeIndex, newRecipe.toString());
+            recipesHashTable.put(uniqueKey, newRecipe);
             saveRecipe();
         } else {
             // add new recipe
             recipesCustomLinkedList.add(newRecipe);
             recipeListView.getItems().add(newRecipe.toString());
+            recipesHashTable.put(uniqueKey, newRecipe);
             saveRecipe();
         }
         selectedRecipeIndex = -1; //-delete later????
@@ -599,6 +614,51 @@ public class HelloController {
         recipeListView.getSelectionModel().clearSelection();
     }
 
+    @FXML
+    public TextField recipeSearch;
+    @FXML
+    public ListView recipeSearchResult;
+    @FXML
+    public Button recipeSearchButton;
+
+    public boolean searchingRecipeByName(String recipeName) {
+        boolean found = false;
+        for (int i = 0; i < recipesHashTable.capacity; i++) { //directly access the table array
+            HNode<String, Recipes> node = recipesHashTable.table[i]; //start of bucket chain
+            //traverse the chain in each bucket
+            while (node != null) {
+                Recipes recipe = node.value; //access value
+                if (recipe.getRecipeName().contains(recipeName)) {
+                    recipeSearchResult.getItems().add(recipe.toString());
+                    found = true;
+                }
+                node = node.next; //move to the next node
+            }
+        }
+        if (!found) {
+            recipeSearchResult.getItems().add("No recipes with such name");
+        }
+        return found;
+    }
+
+    @FXML
+    public ComboBox<String> recipeFilterBy;
+    public void switchSearchRecipe(ActionEvent event) {
+        //clear previous results
+        recipeSearchResult.getItems().clear();
+        String input = recipeSearch.getText(); //input text
+
+        //check if input is empty
+        if ( input == null || input.trim().isEmpty()) {
+            recipeSearchResult.getItems().add("Please enter a search term.");
+            return;
+        }
+        if (recipeFilterBy.getValue().equals("Name")) {
+            searchingRecipeByName(input);
+        }
+    }
+
+
 
     public void saveRecipe() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/recipes.xml");
@@ -607,6 +667,7 @@ public class HelloController {
         xstream.allowTypeHierarchy(CustomLinkedList.class);
         ObjectOutputStream os = xstream.createObjectOutputStream(new FileWriter(file));
         os.writeObject(recipesCustomLinkedList);
+        os.writeObject(recipesHashTable);
         System.out.println ("recipes added to the file"); //---future debug
         os.close();
     }
@@ -622,10 +683,17 @@ public class HelloController {
             ObjectInputStream in = xstream.createObjectInputStream(new FileReader(file));
             //load the xml data into recipeList
             recipesCustomLinkedList = (CustomLinkedList<Recipes>) in.readObject();
+            recipesHashTable = new CustomHashT<>(10); //clear and reinitialize existing hash table
             System.out.println("recipes are loaded.");//debug
             for (int i = 0; i < recipesCustomLinkedList.size(); i++) { //populating listview with loaded recipes
+                Recipes recipe = recipesCustomLinkedList.getAtIndex(i);
                 recipeListView.getItems().add(recipesCustomLinkedList.getAtIndex(i).toString());
+
+                int hashKey = recipesHashTable.customHashCode(recipe.getRecipeName());
+                String uniqueKey = recipe.getRecipeName() + "_" + hashKey + "_" + i; //unique key
+                recipesHashTable.put(uniqueKey, recipe);
             }
+
             in.close();
         } catch (Exception error) {
             error.printStackTrace();

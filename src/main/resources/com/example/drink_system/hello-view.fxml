@@ -92,10 +92,10 @@
                         <ListView fx:id="drinksInRecipeListView" layoutX="113.0" layoutY="247.0" prefHeight="77.0" prefWidth="148.0" />
                         <Button layoutX="448.0" layoutY="485.0" mnemonicParsing="false" onAction="#updateRecipe" text="Update" />
                         <Text layoutX="277.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a recipe in the system:" wrappingWidth="200.94061279296875" />
-                        <TextField fx:id="ingredientSeacrh11" layoutX="275.0" layoutY="53.0" promptText="Find " />
-                        <Button fx:id="ingredientSearchButton11" layoutX="424.0" layoutY="53.0" mnemonicParsing="false" text="Search" />
-                        <ComboBox fx:id="ingredientFilterBy11" layoutX="480.0" layoutY="52.0" prefHeight="26.0" prefWidth="105.0" promptText=" filter by" />
-                        <ListView layoutX="276.0" layoutY="89.0" prefHeight="52.0" prefWidth="310.0" />
+                        <TextField fx:id="recipeSearch" layoutX="275.0" layoutY="53.0" promptText="Find " />
+                        <Button fx:id="recipeSearchButton" layoutX="535.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchSearchRecipe" text="Search" />
+                        <ComboBox fx:id="recipeFilterBy" layoutX="425.0" layoutY="52.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
+                        <ListView fx:id="recipeSearchResult" layoutX="276.0" layoutY="89.0" prefHeight="52.0" prefWidth="310.0" />
                      </children></AnchorPane>
               </content>
             </Tab>
