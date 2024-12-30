@@ -22,19 +22,34 @@ public class HelloController {
     }
 
     @FXML
+    ListView ingredientsInSystemList;
+    @FXML
+    ListView drinksInSystemList;
+    @FXML
+    ListView recipesInSystemList;
+
+    @FXML
     public void initialize(){
         loadIngredients();
         loadDrinks();
         loadRecipes();
 
 
-        // Populate ListViews for creating recipes
+        // Populate ListViews for creating recipes & Populate ListViews for the homePage
         for (Ingredients ingredient : ingredientsCustomLinkedList) {
             ingredientsInRecipeListView.getItems().add(ingredient);
+            ingredientsInSystemList.getItems().add(ingredient);
         }
         for (Drinks drink : drinksCustomLinkedList) {
             drinksInRecipeListView.getItems().add(drink);
+            drinksInSystemList.getItems().add(drink);
         }
+        for (Recipes recipe : recipesCustomLinkedList) {
+            recipesInSystemList.getItems().add(recipe);
+        }
+
+
+
 
         ingredientsInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE); //allows for multiple items to be selected to add to the recipe
         drinksInRecipeListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

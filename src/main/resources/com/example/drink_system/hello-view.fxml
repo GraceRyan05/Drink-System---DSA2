@@ -6,26 +6,72 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.drink_system.HelloController">
    <children>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Home Page">
+            <Tab text="Home Page">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="149.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to The Drink Vault">
+                           <font>
+                              <Font name="Bodoni MT" size="35.0" />
+                           </font>
+                        </Text>
+                        <ImageView fitHeight="105.0" fitWidth="121.0" layoutX="22.0" layoutY="14.0">
+                           <image>
+                              <Image url="@../../../cocktailphotos.png" />
+                           </image>
+                        </ImageView>
+                        <Text layoutX="85.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Drink Vault is an application used to store Ingredients, Drinks and Recipes. Items can be added, updated and deleted from the system. Ingredients, Drinks and Recipes each have their own tabs in the system for easier navigation and user friendliness. Items can be searched for, and can also be sorted into alphabetical order in their lists." textAlignment="CENTER" wrappingWidth="439.328125">
+                           <font>
+                              <Font name="Bodoni MT" size="17.0" />
+                           </font>
+                        </Text>
+                        <Line endX="444.4000244140625" layoutX="130.0" layoutY="141.0" startX="-100.0" />
+                        <ListView fx:id="drinksInSystemList" layoutX="214.0" layoutY="342.0" prefHeight="214.0" prefWidth="181.0" />
+                        <ListView fx:id="ingredientsInSystemList" layoutX="22.0" layoutY="342.0" prefHeight="214.0" prefWidth="181.0" />
+                        <ListView fx:id="recipesInSystemList" layoutX="404.0" layoutY="342.0" prefHeight="214.0" prefWidth="181.0" />
+                        <Text layoutX="46.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients in System:">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="247.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Drinks in System:">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="439.0" layoutY="332.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recipes in System:">
+                           <font>
+                              <Font name="Bodoni MT" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Home">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TextField layoutX="166.0" layoutY="35.0" />
-                        <Text layoutX="14.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searh for drinks here:" />
+                        <TextField layoutX="166.0" layoutY="36.0" />
+                        <Text layoutX="30.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searh for drinks here:" />
                         <Text layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for ingredients here:" />
                         <Text layoutX="25.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for recipes here:" />
                         <TextField layoutX="166.0" layoutY="108.0" />
                         <TextField layoutX="166.0" layoutY="187.0" />
-                        <Button layoutX="339.0" layoutY="35.0" mnemonicParsing="false" text="Search" />
-                        <Button layoutX="339.0" layoutY="107.0" mnemonicParsing="false" text="Search" />
+                        <Button layoutX="339.0" layoutY="37.0" mnemonicParsing="false" text="Search" />
+                        <Button layoutX="339.0" layoutY="108.0" mnemonicParsing="false" text="Search" />
                         <Button layoutX="339.0" layoutY="186.0" mnemonicParsing="false" text="Search" />
                         <Button fx:id="resetWholeDrinkSystem" layoutX="241.0" layoutY="472.0" mnemonicParsing="false" onAction="#resetDrinkSystem" text="Reset System" />
                      </children></AnchorPane>
