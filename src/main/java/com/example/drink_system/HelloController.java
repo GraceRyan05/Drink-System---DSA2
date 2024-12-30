@@ -189,6 +189,7 @@ public class HelloController {
             while (node != null) {
                 Ingredients ingredient = node.value; //access value
                 if (ingredient.getIngredientName().contains(name)) {
+                    sortIngredientsAlphabeticallyMethodCall();
                     ingredientSearchResult.getItems().add(ingredient.toString());
                     found = true;
                 }
@@ -198,6 +199,9 @@ public class HelloController {
         if (!found) {
             ingredientSearchResult.getItems().add("no ingredients with such name");
         }
+
+
+
     }
 
 
@@ -239,6 +243,67 @@ public class HelloController {
         }
         else if (ingredientFilterBy.getValue().equals("Description")){
             searchIngredientByDescription(input);
+        }
+    }
+
+    public void sortIngredientsAlphabeticallyMethodCall() {
+        int size = ingredientsCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Ingredients currentIngredient = ingredientsCustomLinkedList.getAtIndex(j);
+                Ingredients minIngredient = ingredientsCustomLinkedList.getAtIndex(min);
+
+                //compare the ingredient names alphabetically
+                if (currentIngredient.getIngredientName().compareTo(minIngredient.getIngredientName()) < 0) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Ingredients swap = ingredientsCustomLinkedList.getAtIndex(i);
+                ingredientsCustomLinkedList.setAtIndex(i, ingredientsCustomLinkedList.getAtIndex(min));
+                ingredientsCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+
+    }
+
+
+    @FXML
+    Button sortIngredientsButton;
+
+    public void sortIngredientsAlphabetically(ActionEvent event) {
+        int size = ingredientsCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Ingredients currentIngredient = ingredientsCustomLinkedList.getAtIndex(j);
+                Ingredients minIngredient = ingredientsCustomLinkedList.getAtIndex(min);
+
+                //compare the ingredient names alphabetically
+                if (currentIngredient.getIngredientName().compareTo(minIngredient.getIngredientName()) < 0) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Ingredients swap = ingredientsCustomLinkedList.getAtIndex(i);
+                ingredientsCustomLinkedList.setAtIndex(i, ingredientsCustomLinkedList.getAtIndex(min));
+                ingredientsCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+        //after the sort update the listview
+        ingredientListView.getItems().clear();
+
+        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
+            ingredientListView.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
+          //Ignore this - just for testing if it works
+            //  ingredientSearchResult.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
         }
     }
 

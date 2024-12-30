@@ -49,6 +49,7 @@
                         <ComboBox fx:id="ingredientFilterBy" layoutX="388.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <ListView fx:id="ingredientSearchResult" layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
                         <Text layoutX="225.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for an ingredient in the system:" wrappingWidth="215.61444091796875" />
+                        <Button fx:id="sortIngredientsButton" layoutX="78.0" layoutY="359.0" mnemonicParsing="false" onAction="#sortIngredientsAlphabetically" text="Sort Alphabetically" />
                      </children>
                   </AnchorPane>
             </content>
