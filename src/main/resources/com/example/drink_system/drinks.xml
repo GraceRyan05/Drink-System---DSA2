@@ -2,25 +2,48 @@
   <com.example.drink__system.CustomLinkedList>
     <head>
       <next>
+        <next>
+          <contents class="com.example.drink_system.Drinks">
+            <drinkName>newer</drinkName>
+            <countryOfOrigin>ad</countryOfOrigin>
+            <textualDescription>jdh</textualDescription>
+            <imageURL>sad</imageURL>
+          </contents>
+        </next>
         <contents class="com.example.drink_system.Drinks">
-          <drinkName>hey</drinkName>
-          <countryOfOrigin>no</countryOfOrigin>
-          <textualDescription>dkjhsku</textualDescription>
-          <imageURL>zjhs</imageURL>
+          <drinkName>new name </drinkName>
+          <countryOfOrigin>new place</countryOfOrigin>
+          <textualDescription>new descriptionn</textualDescription>
+          <imageURL>qwerty</imageURL>
         </contents>
       </next>
       <contents class="com.example.drink_system.Drinks">
-        <drinkName>new name </drinkName>
-        <countryOfOrigin>new place</countryOfOrigin>
-        <textualDescription>new descriptionn</textualDescription>
-        <imageURL>qwerty</imageURL>
+        <drinkName>hey</drinkName>
+        <countryOfOrigin>no</countryOfOrigin>
+        <textualDescription>dkjhsku</textualDescription>
+        <imageURL>zjhs</imageURL>
       </contents>
     </head>
   </com.example.drink__system.CustomLinkedList>
   <com.example.drink__system.CustomHashT>
     <table>
+      <null/>
+      <null/>
       <com.example.drink__system.HNode>
-        <key class="string">hey_9_0</key>
+        <key class="string">newer_3_0</key>
+        <value class="com.example.drink_system.Drinks">
+          <drinkName>newer</drinkName>
+          <countryOfOrigin>ad</countryOfOrigin>
+          <textualDescription>jdh</textualDescription>
+          <imageURL>sad</imageURL>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <com.example.drink__system.HNode>
+        <key class="string">hey_9_1</key>
         <value class="com.example.drink_system.Drinks">
           <drinkName>hey</drinkName>
           <countryOfOrigin>no</countryOfOrigin>
@@ -28,13 +51,6 @@
           <imageURL>zjhs</imageURL>
         </value>
       </com.example.drink__system.HNode>
-      <null/>
-      <null/>
-      <null/>
-      <null/>
-      <null/>
-      <null/>
-      <null/>
       <com.example.drink__system.HNode>
         <key class="string">new name _8_0</key>
         <value class="com.example.drink_system.Drinks">
@@ -46,7 +62,7 @@
       </com.example.drink__system.HNode>
       <null/>
     </table>
-    <size>2</size>
+    <size>3</size>
     <capacity>10</capacity>
   </com.example.drink__system.CustomHashT>
 </object-stream>

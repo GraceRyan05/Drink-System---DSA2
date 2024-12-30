@@ -214,6 +214,7 @@ public class HelloController {
             while (node != null) {
                 Ingredients ingredient = node.value; //access value
                 if (ingredient.getTextualDescription().contains(keyWords)) {
+                    sortIngredientsAlphabeticallyMethodCall();
                     ingredientSearchResult.getItems().add(ingredient.toString());
                     found = true;
                 }
@@ -482,6 +483,7 @@ public class HelloController {
             while (node != null) {
                 Drinks drink = node.value; //access value
                 if (drink.getDrinkName().contains(name)) {
+                    sortDrinksAlphabeticallyMethodCall();
                     drinkSearchResult.getItems().add(drink.toString());
                     found = true;
                 }
@@ -503,6 +505,7 @@ public class HelloController {
             while(node != null) {
                 Drinks drink = node.value; //access value;
                 if (drink.getTextualDescription().contains(keyWords)) {
+                    sortDrinksAlphabeticallyMethodCall();
                     drinkSearchResult.getItems().add(drink.toString());
                     found = true;
                 }
@@ -521,7 +524,7 @@ public class HelloController {
         drinkSearchResult.getItems().clear();
         String input = drinkSearch.getText(); //input text
 
-        //check if input if empty
+        //check if input is empty
         if (input == null || input.trim().isEmpty()) {
             drinkSearchResult.getItems().add("Please enter a search term.");
             return;
@@ -531,6 +534,63 @@ public class HelloController {
         }
         else if (drinkFilterBy.getValue().equals("Description")) {
             searchDrinksByDescription(input);
+        }
+    }
+
+    public void sortDrinksAlphabeticallyMethodCall() {
+        int size = drinksCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Drinks currentDrink = drinksCustomLinkedList.getAtIndex(j);
+                Drinks minDrink = drinksCustomLinkedList.getAtIndex(min);
+
+                //compare the drink names alphabetically
+                if (currentDrink.getDrinkName().compareTo(minDrink.getDrinkName()) < 0) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Drinks swap = drinksCustomLinkedList.getAtIndex(i);
+                drinksCustomLinkedList.setAtIndex(i, drinksCustomLinkedList.getAtIndex(min));
+                drinksCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+    }
+
+    @FXML
+    Button sortDrinksButton;
+
+    public void sortDrinksAlphabetically(ActionEvent event) {
+        int size = drinksCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Drinks currentDrink = drinksCustomLinkedList.getAtIndex(j);
+                Drinks minDrink = drinksCustomLinkedList.getAtIndex(min);
+
+                //compare the drink names alphabetically
+                if (currentDrink.getDrinkName().compareTo(minDrink.getDrinkName()) < 0) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Drinks swap = drinksCustomLinkedList.getAtIndex(i);
+                drinksCustomLinkedList.setAtIndex(i, drinksCustomLinkedList.getAtIndex(min));
+                drinksCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+        //after the sort update the listview
+        drinkListView.getItems().clear();
+
+        for (int i = 0; i < drinksCustomLinkedList.size(); i++) {
+            drinkListView.getItems().add(drinksCustomLinkedList.getAtIndex(i).toString());
         }
     }
 

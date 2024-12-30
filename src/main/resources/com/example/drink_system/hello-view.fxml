@@ -73,6 +73,7 @@
                         <Button fx:id="drinkSearchButton" layoutX="503.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchSearchDrink" text="Search" />
                         <ComboBox fx:id="drinkFilterBy" layoutX="384.0" layoutY="43.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <Text layoutX="220.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="194.01446533203125" />
+                        <Button fx:id="sortDrinksButton" layoutX="81.0" layoutY="434.0" mnemonicParsing="false" onAction="#sortDrinksAlphabetically" text="Sort Alphabetically" />
                      </children></AnchorPane>
               </content>
             </Tab>
