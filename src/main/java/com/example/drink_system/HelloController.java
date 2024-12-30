@@ -784,6 +784,41 @@ public class HelloController {
     }
 
 
+    @FXML
+    Button sortRecipesButton;
+
+    public void sortRecipesAlphabetically(ActionEvent event) {
+        int size = recipesCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Recipes currentRecipe = recipesCustomLinkedList.getAtIndex(j);
+                Recipes minRecipe = recipesCustomLinkedList.getAtIndex(min);
+
+                //compare the recipe names alphabetically
+                if (currentRecipe.getRecipeName().compareTo(minRecipe.getRecipeName()) < 0) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Recipes swap = recipesCustomLinkedList.getAtIndex(i);
+                recipesCustomLinkedList.setAtIndex(i, recipesCustomLinkedList.getAtIndex(min));
+                recipesCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+        //after the sort update the listview
+        recipeListView.getItems().clear();
+
+        for (int i = 0; i < recipesCustomLinkedList.size(); i++) {
+            recipeListView.getItems().add(recipesCustomLinkedList.getAtIndex(i).toString());
+
+        }
+    }
+
+
 
     public void saveRecipe() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/recipes.xml");

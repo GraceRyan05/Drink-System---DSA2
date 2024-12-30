@@ -49,7 +49,7 @@
                         <ComboBox fx:id="ingredientFilterBy" layoutX="388.0" layoutY="53.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <ListView fx:id="ingredientSearchResult" layoutX="226.0" layoutY="91.0" prefHeight="52.0" prefWidth="334.0" />
                         <Text layoutX="225.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for an ingredient in the system:" wrappingWidth="215.61444091796875" />
-                        <Button fx:id="sortIngredientsButton" layoutX="78.0" layoutY="359.0" mnemonicParsing="false" onAction="#sortIngredientsAlphabetically" text="Sort Alphabetically" />
+                        <Button fx:id="sortIngredientsButton" layoutX="226.0" layoutY="476.0" mnemonicParsing="false" onAction="#sortIngredientsAlphabetically" text="Sort Alphabetically" />
                      </children>
                   </AnchorPane>
             </content>
@@ -73,7 +73,7 @@
                         <Button fx:id="drinkSearchButton" layoutX="503.0" layoutY="44.0" mnemonicParsing="false" onAction="#switchSearchDrink" text="Search" />
                         <ComboBox fx:id="drinkFilterBy" layoutX="384.0" layoutY="43.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <Text layoutX="220.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for a drink in the system:" wrappingWidth="194.01446533203125" />
-                        <Button fx:id="sortDrinksButton" layoutX="81.0" layoutY="434.0" mnemonicParsing="false" onAction="#sortDrinksAlphabetically" text="Sort Alphabetically" />
+                        <Button fx:id="sortDrinksButton" layoutX="220.0" layoutY="461.0" mnemonicParsing="false" onAction="#sortDrinksAlphabetically" text="Sort Alphabetically" />
                      </children></AnchorPane>
               </content>
             </Tab>
@@ -98,6 +98,7 @@
                         <Button fx:id="recipeSearchButton" layoutX="535.0" layoutY="53.0" mnemonicParsing="false" onAction="#switchSearchRecipe" text="Search" />
                         <ComboBox fx:id="recipeFilterBy" layoutX="425.0" layoutY="52.0" prefHeight="26.0" prefWidth="105.0" promptText="Search By" />
                         <ListView fx:id="recipeSearchResult" layoutX="276.0" layoutY="89.0" prefHeight="52.0" prefWidth="310.0" />
+                        <Button fx:id="sortRecipesButton" layoutX="277.0" layoutY="485.0" mnemonicParsing="false" onAction="#sortRecipesAlphabetically" text="Sort Alphabetically" />
                      </children></AnchorPane>
               </content>
             </Tab>
