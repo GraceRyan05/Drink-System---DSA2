@@ -3,6 +3,31 @@
     <head>
       <next>
         <contents class="com.example.drink_system.Recipes">
+          <recipeName>new1</recipeName>
+        </contents>
+      </next>
+      <contents class="com.example.drink_system.Recipes">
+        <recipeName>changed</recipeName>
+        <drinkDetails>
+          <drinkName>3</drinkName>
+          <countryOfOrigin>desc</countryOfOrigin>
+          <textualDescription>place</textualDescription>
+          <imageURL>12321</imageURL>
+        </drinkDetails>
+        <ingredientDetails>
+          <ingredientName>sfds</ingredientName>
+          <textualDescription>dsf</textualDescription>
+          <alcoholContent>234.0</alcoholContent>
+        </ingredientDetails>
+      </contents>
+    </head>
+  </com.example.drink__system.CustomLinkedList>
+  <com.example.drink__system.CustomHashT>
+    <table>
+      <null/>
+      <com.example.drink__system.HNode>
+        <key class="string">changed_9_1</key>
+        <value class="com.example.drink_system.Recipes">
           <recipeName>changed</recipeName>
           <drinkDetails>
             <drinkName>3</drinkName>
@@ -15,11 +40,28 @@
             <textualDescription>dsf</textualDescription>
             <alcoholContent>234.0</alcoholContent>
           </ingredientDetails>
-        </contents>
-      </next>
-      <contents class="com.example.drink_system.Recipes">
-        <recipeName>new1</recipeName>
-      </contents>
-    </head>
-  </com.example.drink__system.CustomLinkedList>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <null/>
+      <com.example.drink__system.HNode>
+        <key class="string">new1_5_0</key>
+        <value class="com.example.drink_system.Recipes">
+          <recipeName>new1</recipeName>
+        </value>
+      </com.example.drink__system.HNode>
+      <com.example.drink__system.HNode>
+        <key class="string">yay_8_2</key>
+        <value class="com.example.drink_system.Recipes">
+          <recipeName>yay</recipeName>
+        </value>
+      </com.example.drink__system.HNode>
+      <null/>
+    </table>
+    <size>3</size>
+    <capacity>10</capacity>
+  </com.example.drink__system.CustomHashT>
 </object-stream>

@@ -126,12 +126,16 @@ public class HelloController {
             // update existing ingredient
             ingredientsCustomLinkedList.setAtIndex(selectedIngredientIndex, newIngredient);
             ingredientListView.getItems().set(selectedIngredientIndex, newIngredient.toString());
+            ingredientsInSystemList.getItems().set(selectedIngredientIndex, newIngredient.toString());
+            ingredientsInRecipeListView.getItems().set(selectedIngredientIndex, newIngredient.toString());
             ingredientsHashTable.put(uniqueKey, newIngredient);
             saveIngredients();
         } else {
             // add new ingredient
             ingredientsCustomLinkedList.add(newIngredient);
             ingredientListView.getItems().add(newIngredient.toString());
+            ingredientsInSystemList.getItems().add(newIngredient.toString());
+            ingredientsInRecipeListView.getItems().add(newIngredient.toString());
             ingredientsHashTable.put(uniqueKey, newIngredient);
             saveIngredients();
         }
@@ -159,6 +163,8 @@ public class HelloController {
 
             //show the changes in the list view
             ingredientListView.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
+            ingredientsInRecipeListView.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
+            ingredientsInSystemList.getItems().set(selectedIngredientIndex, updatedIngredient.toString());
 
             ingredientsHashTable.put(ingredientName, updatedIngredient);
 
@@ -183,6 +189,8 @@ public class HelloController {
         if(selectedIndex != -1 ){
             ingredientsCustomLinkedList.remove(selectedIndex);
             ingredientListView.getItems().remove(selectedIndex);
+            ingredientsInSystemList.getItems().remove(selectedIndex);
+            ingredientsInRecipeListView.getItems().remove(selectedIndex);
             ingredientsHashTable.remove(ingredientsCustomLinkedList.getAtIndex(selectedIndex).getIngredientName()); //simply gets the name of ingredient
             saveIngredients();
         }
@@ -445,6 +453,8 @@ public class HelloController {
             //update existing drink
             drinksCustomLinkedList.setAtIndex(selectedDrinkIndex, newDrink);
             drinkListView.getItems().set(selectedDrinkIndex, newDrink);
+            drinksInSystemList.getItems().set(selectedDrinkIndex, newDrink);
+            drinksInRecipeListView.getItems().set(selectedDrinkIndex, newDrink);
 
             drinksHashTable.put(uniqueKey, newDrink);
 
@@ -453,6 +463,8 @@ public class HelloController {
         else{
             drinksCustomLinkedList.add(newDrink);
             drinkListView.getItems().add(newDrink.toString());
+            drinksInSystemList.getItems().add(newDrink.toString());
+            drinksInRecipeListView.getItems().add(newDrink.toString());
 
             drinksHashTable.put(uniqueKey, newDrink);
             saveDrinks();
@@ -484,6 +496,8 @@ public class HelloController {
 
             //show the changes in the list view
             drinkListView.getItems().set(selectedDrinkIndex, updatedDrink.toString());
+            drinksInRecipeListView.getItems().set(selectedDrinkIndex, updatedDrink.toString());
+            drinksInSystemList.getItems().set(selectedDrinkIndex, updatedDrink.toString());
 
             drinksHashTable.put(drinkName, updatedDrink);
 
@@ -511,6 +525,8 @@ public class HelloController {
         if(selectedIndex != -1 ){
             drinksCustomLinkedList.remove(selectedIndex);
             drinkListView.getItems().remove(selectedIndex);
+            drinksInRecipeListView.getItems().remove(selectedIndex);
+            drinksInSystemList.getItems().remove(selectedIndex);
 
             drinksHashTable.remove(drinksCustomLinkedList.getAtIndex(selectedIndex).getDrinkName()); //simply get the name of the drink
             saveDrinks();
@@ -732,12 +748,14 @@ public class HelloController {
             // update existing recipe
             recipesCustomLinkedList.setAtIndex(selectedRecipeIndex, newRecipe);
             recipeListView.getItems().set(selectedRecipeIndex, newRecipe.toString());
+            recipesInSystemList.getItems().set(selectedRecipeIndex, newRecipe.toString());
             recipesHashTable.put(uniqueKey, newRecipe);
             saveRecipe();
         } else {
             // add new recipe
             recipesCustomLinkedList.add(newRecipe);
             recipeListView.getItems().add(newRecipe.toString());
+            recipesInSystemList.getItems().add( newRecipe.toString());
             recipesHashTable.put(uniqueKey, newRecipe);
             saveRecipe();
         }
@@ -763,6 +781,7 @@ public class HelloController {
 
             //show the changes in the list view
             recipeListView.getItems().set(selectedRecipeIndex, updatedRecipe.toString());
+            recipesInSystemList.getItems().set(selectedRecipeIndex, updatedRecipe.toString());
 
             //save the updated recipe
             saveRecipe();
@@ -785,6 +804,7 @@ public class HelloController {
         if(selectedIndex != -1 ){
             recipesCustomLinkedList.remove(selectedIndex);
             recipeListView.getItems().remove(selectedIndex);
+            recipesInSystemList.getItems().remove(selectedIndex);
             saveRecipe();
 
         }
