@@ -308,6 +308,42 @@ public class HelloController {
         }
     }
 
+
+    @FXML
+    Button sortIngredientsButtonABV;
+
+    public void sortIngredientsByABV(ActionEvent event) {
+        int size = ingredientsCustomLinkedList.size();
+
+        //selection sort algorithm
+        for (int i = 0; i < size -1; i++) {
+            int min = i;
+            for (int j = i + 1; j < size; j++) {
+                Ingredients currentIngredient = ingredientsCustomLinkedList.getAtIndex(j);
+                Ingredients minIngredient = ingredientsCustomLinkedList.getAtIndex(min);
+
+                //compare the ingredient names alphabetically
+                if (currentIngredient.getAlcoholContent() < minIngredient.getAlcoholContent()) {
+                    min = j; //a smaller name was found - update the min value
+                }
+            }
+            //swap the found minimum element with the first unsorted element
+            if (min != i) {
+                Ingredients swap = ingredientsCustomLinkedList.getAtIndex(i);
+                ingredientsCustomLinkedList.setAtIndex(i, ingredientsCustomLinkedList.getAtIndex(min));
+                ingredientsCustomLinkedList.setAtIndex(min, swap);
+            }
+        }
+        //after the sort update the listview
+        ingredientListView.getItems().clear();
+
+        for (int i = 0; i < ingredientsCustomLinkedList.size(); i++) {
+            ingredientListView.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
+            //Ignore this - just for testing if it works
+            //  ingredientSearchResult.getItems().add(ingredientsCustomLinkedList.getAtIndex(i).toString());
+        }
+    }
+
     public void saveIngredients() throws IOException {
         File file = new File("src/main/resources/com/example/drink_system/ingredient.xml");
         XStream xstream = new XStream(new DomDriver());
@@ -593,6 +629,7 @@ public class HelloController {
             drinkListView.getItems().add(drinksCustomLinkedList.getAtIndex(i).toString());
         }
     }
+
 
 
     public void saveDrinks() throws IOException {
