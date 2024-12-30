@@ -25,8 +25,8 @@ public class HelloApplication extends Application {
         //The scene - represents the visual contents of the stage
         Scene scene = new Scene(root);
 
-       // Image icon = new Image(""); //to add the image from the file added into resources
-        //stage.getIcons().add(icon); //add the image 'icon' to the stage (displays a drink image)
+        Image icon = new Image("cocktailphotos.png"); //to add the image from the file added into resources
+        stage.getIcons().add(icon); //add the image 'icon' to the stage (displays a drink image)
 
         stage.setScene(scene);
         stage.setTitle("Drink Selection System"); //add a title for the stage
