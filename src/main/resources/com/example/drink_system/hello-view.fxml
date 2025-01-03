@@ -56,27 +56,11 @@
                               <Font name="Bodoni MT" size="14.0" />
                            </font>
                         </Text>
+                        <Button fx:id="resetWholeDrinkSystem1" layoutX="451.0" layoutY="272.0" mnemonicParsing="false" onAction="#resetDrinkSystem" text="Reset System" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="Home">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TextField layoutX="166.0" layoutY="36.0" />
-                        <Text layoutX="30.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Searh for drinks here:" />
-                        <Text layoutX="14.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for ingredients here:" />
-                        <Text layoutX="25.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search for recipes here:" />
-                        <TextField layoutX="166.0" layoutY="108.0" />
-                        <TextField layoutX="166.0" layoutY="187.0" />
-                        <Button layoutX="339.0" layoutY="37.0" mnemonicParsing="false" text="Search" />
-                        <Button layoutX="339.0" layoutY="108.0" mnemonicParsing="false" text="Search" />
-                        <Button layoutX="339.0" layoutY="186.0" mnemonicParsing="false" text="Search" />
-                        <Button fx:id="resetWholeDrinkSystem" layoutX="241.0" layoutY="472.0" mnemonicParsing="false" onAction="#resetDrinkSystem" text="Reset System" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
           <Tab text="Ingredients">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

@@ -946,6 +946,14 @@ public class HelloController {
         ingredientsList.clear();
         drinksList.clear();
         recipesList.clear();
+
+        ingredientsInRecipeListView.getItems().clear();
+        drinksInRecipeListView.getItems().clear();
+
+        ingredientsInSystemList.getItems().clear();
+        drinksInSystemList.getItems().clear();
+        recipesInSystemList.getItems().clear();
+
     }
 
 
